@@ -1,16 +1,13 @@
 package com.company.klavr.entity;
 
-import io.jmix.core.HasTimeZone;
 import io.jmix.core.annotation.Secret;
 import io.jmix.core.entity.annotation.JmixGeneratedValue;
 import io.jmix.core.entity.annotation.SystemLevel;
-import io.jmix.core.metamodel.annotation.DependsOnProperties;
-import io.jmix.core.metamodel.annotation.InstanceName;
 import io.jmix.core.metamodel.annotation.JmixEntity;
 import io.jmix.security.authentication.JmixUserDetails;
 import org.springframework.security.core.GrantedAuthority;
+
 import javax.persistence.*;
-import javax.validation.constraints.Email;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.UUID;
@@ -20,16 +17,12 @@ import java.util.UUID;
 @Table(name = "USER_", indexes = {
         @Index(name = "IDX_USER__ON_USERNAME", columnList = "USERNAME", unique = true)
 })
-public class User implements JmixUserDetails, HasTimeZone {
+public class User implements JmixUserDetails {
 
     @Id
-    @Column(name = "ID")
+    @Column(name = "ID", nullable = false)
     @JmixGeneratedValue
     private UUID id;
-
-    @Version
-    @Column(name = "VERSION", nullable = false)
-    private Integer version;
 
     @Column(name = "USERNAME", nullable = false)
     protected String username;
@@ -39,21 +32,8 @@ public class User implements JmixUserDetails, HasTimeZone {
     @Column(name = "PASSWORD")
     protected String password;
 
-    @Column(name = "FIRST_NAME")
-    protected String firstName;
-
-    @Column(name = "LAST_NAME")
-    protected String lastName;
-
-    @Email
-    @Column(name = "EMAIL")
-    protected String email;
-
     @Column(name = "ACTIVE")
     protected Boolean active = true;
-
-    @Column(name = "TIME_ZONE_ID")
-    protected String timeZoneId;
 
     @Transient
     protected Collection<? extends GrantedAuthority> authorities;
@@ -64,14 +44,6 @@ public class User implements JmixUserDetails, HasTimeZone {
 
     public void setId(UUID id) {
         this.id = id;
-    }
-
-    public Integer getVersion() {
-        return version;
-    }
-
-    public void setVersion(Integer version) {
-        this.version = version;
     }
 
     public String getPassword() {
@@ -97,30 +69,6 @@ public class User implements JmixUserDetails, HasTimeZone {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
     }
 
     @Override
@@ -153,19 +101,5 @@ public class User implements JmixUserDetails, HasTimeZone {
         return Boolean.TRUE.equals(active);
     }
 
-    @InstanceName
-    @DependsOnProperties({"firstName", "lastName", "username"})
-    public String getDisplayName() {
-        return String.format("%s %s [%s]", (firstName != null ? firstName : ""),
-                (lastName != null ? lastName : ""), username).trim();
-    }
 
-    @Override
-    public String getTimeZoneId() {
-        return timeZoneId;
-    }
-
-    public void setTimeZoneId(String timeZoneId) {
-        this.timeZoneId = timeZoneId;
-    }
 }

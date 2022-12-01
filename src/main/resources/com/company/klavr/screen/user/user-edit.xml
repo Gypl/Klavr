@@ -36,10 +36,6 @@
                                caption="msg://confirmPassword"
                                required="true"
                                visible="false"/>
-                <textField id="firstNameField" property="firstName"/>
-                <textField id="lastNameField" property="lastName"/>
-                <textField id="emailField" property="email"/>
-                <comboBox id="timeZoneField" property="timeZoneId"/>
                 <checkBox id="activeField" property="active"/>
             </column>
         </form>
