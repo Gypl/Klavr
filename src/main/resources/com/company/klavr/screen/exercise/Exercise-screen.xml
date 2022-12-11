@@ -1,6 +1,77 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <window xmlns="http://jmix.io/schema/ui/window"
         caption="msg://exerciseScreen.caption">
-    <layout>
+    <layout >
+        <cssLayout css="margin: 200px 30% auto 30%" align="TOP_CENTER">
+            <cssLayout css="display: flex; margin-bottom: 20px">
+                <label value="&#1042;&#1088;&#1077;&#1084;&#1103;: "/>
+                <label css="margin-right: 150px"/>
+
+                <label value="&#1044;&#1083;&#1080;&#1085;&#1072;: "/>
+                <label css="margin-right: 150px"/>
+
+                <label value="&#1054;&#1096;&#1080;&#1073;&#1082;&#1080;: "/>
+                <label css="margin-right: 150px"/>
+            </cssLayout>
+
+            <label
+                    stylename="test"
+                    value="&#1042;&#1074;&#1086;&#1076;&#1080;&#1090;&#1077; &#1091;&#1082;&#1072;&#1079;&#1072;&#1085;&#1085;&#1099;&#1077; &#1089;&#1080;&#1084;&#1074;&#1086;&#1083;&#1099;:"/>
+
+            <cssLayout
+                css="display: flex;
+                      margin: 20px;
+                      border: 2px solid black;
+                      justify-content: center;"
+            >
+                <label
+                    css="
+                        color: #6e6767;
+                        overflow: hidden;
+                        flex-basis: 50%;
+                        text-align: end;"
+                        value="те"/>
+                <label
+                    css="
+                        color: blue;
+                        overflow: hidden;
+                        flex-basis: 50%;"
+                    value="кст"/>
+            </cssLayout>
+
+            <!--Конпки-->
+            <checkBox css="display: block;"/>
+
+            <cssLayout css="display: flex;">
+                <button caption="Й" css="
+                    height: 35px;
+                    width: 35px;
+                    padding: 0;
+                "/>
+                <button caption="Ц" css="
+                    height: 35px;
+                    width: 35px;
+                    padding: 0;
+                "/>
+                <button caption="У" css="
+                    height: 35px;
+                    width: 35px;
+                    padding: 0;
+                "/>
+                <button caption="К" css="
+                    height: 35px;
+                    width: 35px;
+                    padding: 0;
+                "/>
+                <button caption="Е" css="
+                    height: 35px;
+                    width: 35px;
+                    padding: 0;
+                "/>
+                <!--<jsComponent/>-->
+            </cssLayout>
+
+
+        </cssLayout>
     </layout>
 </window>

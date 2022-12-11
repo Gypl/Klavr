@@ -1,0 +1,28 @@
+@import "../helium/helium";
+
+@mixin Exercise {
+  @include helium;
+}
+
+.input-like {
+  display: flex;
+  margin: 20px;
+  border: 2px solid black;
+  justify-content: center;
+}
+
+.first-half {
+    color: #6e6767;
+    overflow: hidden;
+    flex-basis: 50%;
+}
+
+.second-half {
+  color: blue;
+  overflow: hidden;
+  flex-basis: 50%;
+}
+
+.key {
+  color: aqua;
+}
