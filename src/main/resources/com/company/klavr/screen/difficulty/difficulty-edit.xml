@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://jmix.io/schema/ui/window"
+        caption="msg://difficultyEdit.caption"
+        focusComponent="form">
+    <data>
+        <instance id="difficultyDc"
+                  class="com.company.klavr.entity.Difficulty">
+            <fetchPlan extends="_base">
+                <property name="difficult_to_zone" fetchPlan="_base"/>
+            </fetchPlan>
+            <loader/>
+            <collection id="difficult_to_zoneDc" property="difficult_to_zone"/>
+        </instance>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+        <screenSettings id="settingsFacet" auto="true"/>
+    </facets>
+    <actions>
+        <action id="windowCommitAndClose" caption="msg:///actions.Ok"
+                icon="EDITOR_OK"
+                primary="true"
+                shortcut="${COMMIT_SHORTCUT}"/>
+        <action id="windowClose"
+                caption="msg:///actions.Close"
+                icon="EDITOR_CANCEL"/>
+    </actions>
+    <dialogMode height="600"
+                width="800"/>
+    <layout spacing="true" expand="scrollBox">
+        <scrollBox id="scrollBox" spacing="true">
+            <form id="form" dataContainer="difficultyDc">
+                <column width="350px">
+                    <textField id="nameField" property="name"/>
+                    <textField id="mistakesCountField" property="mistakesCount"/>
+                    <textField id="minLengthField" property="minLength"/>
+                    <textField id="maxLengthField" property="maxLength"/>
+                    <textField id="pressTimeField" property="pressTime"/>
+                </column>
+            </form>
+            <groupBox id="difficult_to_zoneBox" caption="msg://com.company.klavr.entity/Difficulty.difficult_to_zone">
+                <table id="difficult_to_zoneTable" dataContainer="difficult_to_zoneDc" width="100%" height="200px">
+                    <actions>
+                        <action id="add" type="add"/>
+                        <action id="exclude" type="exclude"/>
+                    </actions>
+                    <columns>
+                        <column id="symbols"/>
+                    </columns>
+                    <buttonsPanel>
+                        <button action="difficult_to_zoneTable.add"/>
+                        <button action="difficult_to_zoneTable.exclude"/>
+                    </buttonsPanel>
+                </table>
+            </groupBox>
+        </scrollBox>
+        <hbox id="editActions" spacing="true">
+            <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
+            <button id="closeBtn" action="windowClose"/>
+        </hbox>
+    </layout>
+</window>
