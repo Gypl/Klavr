@@ -41,16 +41,16 @@
         <insert tableName="USER_" dbms="postgresql, mssql, hsqldb">
             <column name="ID" value="60885987-1b61-4247-94c7-dff348347f93"/>
             <column name="VERSION" value="1"/>
-            <column name="USERNAME" value="admin"/>
-            <column name="PASSWORD" value="{noop}admin"/>
+            <column name="USERNAME" value="root"/>
+            <column name="PASSWORD" value="{noop}root"/>
             <column name="ACTIVE" valueBoolean="true"/>
         </insert>
 
         <insert tableName="USER_" dbms="oracle, mysql, mariadb">
             <column name="ID" value="608859871b61424794c7dff348347f93"/>
             <column name="VERSION" value="1"/>
-            <column name="USERNAME" value="admin"/>
-            <column name="PASSWORD" value="{noop}admin"/>
+            <column name="USERNAME" value="root"/>
+            <column name="PASSWORD" value="{noop}root"/>
             <column name="ACTIVE" valueBoolean="true"/>
         </insert>
 
@@ -61,7 +61,7 @@
         <insert tableName="SEC_ROLE_ASSIGNMENT" dbms="postgresql, mssql, hsqldb">
             <column name="ID" value="6c9e420a-2b7a-4c42-8654-a9027ee14083"/>
             <column name="VERSION" value="1"/>
-            <column name="USERNAME" value="admin"/>
+            <column name="USERNAME" value="root"/>
             <column name="ROLE_CODE" value="system-full-access"/>
             <column name="ROLE_TYPE" value="resource"/>
         </insert>
@@ -69,11 +69,90 @@
         <insert tableName="SEC_ROLE_ASSIGNMENT" dbms="oracle, mysql, mariadb">
             <column name="ID" value="6c9e420a2b7a4c428654a9027ee14083"/>
             <column name="VERSION" value="1"/>
-            <column name="USERNAME" value="admin"/>
+            <column name="USERNAME" value="root"/>
             <column name="ROLE_CODE" value="system-full-access"/>
             <column name="ROLE_TYPE" value="resource"/>
         </insert>
 
     </changeSet>
 
+    <changeSet id="5" author="Klavr" context="!cuba">
+
+        <insert tableName="USER_" dbms="postgresql, mssql, hsqldb">
+            <column name="ID" value="ad885987-1b61-4247-94c7-dff348347f93"/>
+            <column name="VERSION" value="1"/>
+            <column name="USERNAME" value="admin"/>
+            <column name="PASSWORD" value="{noop}admin"/>
+            <column name="ACTIVE" valueBoolean="true"/>
+        </insert>
+
+        <insert tableName="USER_" dbms="oracle, mysql, mariadb">
+            <column name="ID" value="ad8859871b61424794c7dff348347f93"/>
+            <column name="VERSION" value="1"/>
+            <column name="USERNAME" value="admin"/>
+            <column name="PASSWORD" value="{noop}admin"/>
+            <column name="ACTIVE" valueBoolean="true"/>
+        </insert>
+
+    </changeSet>
+
+    <changeSet id="6" author="Klavr" context="!cuba">
+
+        <insert tableName="SEC_ROLE_ASSIGNMENT" dbms="postgresql, mssql, hsqldb">
+            <column name="ID" value="adc1420a-2b7a-4c42-8654-a9027ee14083"/>
+            <column name="VERSION" value="1"/>
+            <column name="USERNAME" value="admin"/>
+            <column name="ROLE_CODE" value="administrator"/>
+            <column name="ROLE_TYPE" value="resource"/>
+        </insert>
+
+        <insert tableName="SEC_ROLE_ASSIGNMENT" dbms="oracle, mysql, mariadb">
+            <column name="ID" value="adc1420a2b7a4c428654a9027ee14083"/>
+            <column name="VERSION" value="1"/>
+            <column name="USERNAME" value="admin"/>
+            <column name="ROLE_CODE" value="administrator"/>
+            <column name="ROLE_TYPE" value="resource"/>
+        </insert>
+
+    </changeSet>
+
+    <changeSet id="7" author="Klavr" context="!cuba">
+
+        <insert tableName="USER_" dbms="postgresql, mssql, hsqldb">
+            <column name="ID" value="ad8859a9-1b61-4247-94c7-dff348347f93"/>
+            <column name="VERSION" value="1"/>
+            <column name="USERNAME" value="fapah"/>
+            <column name="PASSWORD" value="{noop}fapah"/>
+            <column name="ACTIVE" valueBoolean="true"/>
+        </insert>
+
+        <insert tableName="USER_" dbms="oracle, mysql, mariadb">
+            <column name="ID" value="ad8859a91b61424794c7dff348347f93"/>
+            <column name="VERSION" value="1"/>
+            <column name="USERNAME" value="fapah"/>
+            <column name="PASSWORD" value="{noop}fapah"/>
+            <column name="ACTIVE" valueBoolean="true"/>
+        </insert>
+
+    </changeSet>
+
+    <changeSet id="8" author="Klavr" context="!cuba">
+
+        <insert tableName="SEC_ROLE_ASSIGNMENT" dbms="postgresql, mssql, hsqldb">
+            <column name="ID" value="c0314213-2b7a-4c42-8654-a9027ee14083"/>
+            <column name="VERSION" value="1"/>
+            <column name="USERNAME" value="fapah"/>
+            <column name="ROLE_CODE" value="common-user"/>
+            <column name="ROLE_TYPE" value="resource"/>
+        </insert>
+
+        <insert tableName="SEC_ROLE_ASSIGNMENT" dbms="oracle, mysql, mariadb">
+            <column name="ID" value="c03142132b7a4c428654a9027ee14083"/>
+            <column name="VERSION" value="1"/>
+            <column name="USERNAME" value="fapah"/>
+            <column name="ROLE_CODE" value="common-user"/>
+            <column name="ROLE_TYPE" value="resource"/>
+        </insert>
+
+    </changeSet>
 </databaseChangeLog>

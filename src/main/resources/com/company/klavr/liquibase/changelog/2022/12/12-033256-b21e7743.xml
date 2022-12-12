@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.11.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+
+    <changeSet id="1" author="Klavr">
+        <insert tableName="ZONE_" dbms="postgresql, mssql, hsqldb">
+            <column name="ID" value="2b7a420a-abc1-4c42-8654-a9027ee14083"/>
+            <column name="SYMBOLS" value="кенгапромить"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

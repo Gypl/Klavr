@@ -100,6 +100,11 @@ public class LoginScreen extends Screen {
         login();
     }
 
+    @Subscribe("regisrate")
+    private void onRegisrateActionPerformed(Action.ActionPerformedEvent event) {
+        login();
+    }
+
     private void login() {
         String username = usernameField.getValue();
         String password = passwordField.getValue();

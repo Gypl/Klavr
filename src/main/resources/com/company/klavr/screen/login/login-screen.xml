@@ -47,11 +47,17 @@
                                   textInputAllowed="false"/>
                     </hbox>
 
+                </vbox>
+                <hbox spacing="true">
                     <button id="loginButton"
-                            align="MIDDLE_CENTER"
+                            align="MIDDLE_LEFT"
                             action="submit"
                             stylename="jmix-login-submit-button"/>
-                </vbox>
+                    <button id="regButton"
+                            align="MIDDLE_RIGHT"
+                            action="submit"
+                            caption="Registrate"/>
+                </hbox>
             </vbox>
         </vbox>
     </layout>

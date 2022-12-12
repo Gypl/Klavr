@@ -1,18 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <menu-config xmlns="http://jmix.io/schema/ui/menu">
 
-    <menu id="application" caption="msg://com.company.klavr/menu.application" insertBefore="administration">
-        <item screen="User.browse" caption="msg://com.company.klavr.screen.user/UserBrowse.caption"/>
-        <item screen="themeSettingsScreen" caption="msg://io.jmix.ui.app.themesettings/themeSettings.caption"/>
-        <item screen="Difficulty.browse" caption="msg://com.company.klavr.screen.difficulty/difficultyBrowse.menu"/>
-        <item screen="Zone_.browse" caption="msg://com.company.klavr.screen.zone/zoneBrowse.menu"/>
-        <item screen="Exercise.browse" caption="msg://com.company.klavr.screen.exercise/exerciseBrowse.menu"/>
+    <item screen="themeSettingsScreen" caption="msg://io.jmix.ui.app.themesettings/themeSettings.caption"/>
+    <menu id="navigation" caption="msg://com.company.klavr/menu_config.navigation" insertAfter="administrator"
+          expanded="true">
+        <item screen="ExerciseScreen" caption="msg://com.company.klavr.screen.exercise/exerciseScreen.caption"/>
+        <item screen="ExerciseUser.browse" caption="msg://com.company.klavr.screen.exercise/exerciseUserBrowse.menu"/>
         <item screen="Statistics_User.browse"
               caption="msg://com.company.klavr.screen.statistics/statisticsUserBrowse.menu"/>
+    </menu>
+    <menu id="administrator" caption="msg://com.company.klavr/menu_config.administrator" insertAfter="navigation"
+          expanded="true">
+        <item screen="Zone_.browse" caption="msg://com.company.klavr.screen.zone/zoneBrowse.menu"/>
+        <item screen="Difficulty.browse" caption="msg://com.company.klavr.screen.difficulty/difficultyBrowse.menu"/>
+        <item screen="Exercise.browse" caption="msg://com.company.klavr.screen.exercise/exerciseBrowse.menu"/>
         <item screen="Statistics_Admin.browse"
               caption="msg://com.company.klavr.screen.statistics/statisticsAdminBrowse.menu"/>
-        <item screen="ExerciseUser.browse" caption="msg://com.company.klavr.screen.exercise/exerciseUserBrowse.menu"/>
-        <item screen="ExerciseScreen" caption="msg://com.company.klavr.screen.exercise/exerciseScreen.caption"/>
+        <item screen="User.browse" caption="msg://com.company.klavr.screen.user/UserBrowse.caption"/>
     </menu>
-
 </menu-config>

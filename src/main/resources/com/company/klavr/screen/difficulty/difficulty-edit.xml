@@ -9,8 +9,17 @@
                 <property name="difficult_to_zone" fetchPlan="_base"/>
             </fetchPlan>
             <loader/>
-            <collection id="difficult_to_zoneDc" property="difficult_to_zone"/>
+            <collection id="difficult_to_zoneDc" property="difficult_to_zone">
+            </collection>
         </instance>
+        <collection id="zonesDc" class="com.company.klavr.entity.Zone">
+            <fetchPlan extends="_base"/>
+            <loader id="zonesDl">
+                <query>
+                    <![CDATA[select e from Zone_ e]]>
+                </query>
+            </loader>
+        </collection>
     </data>
     <facets>
         <dataLoadCoordinator auto="true"/>
@@ -39,6 +48,9 @@
                 </column>
             </form>
             <groupBox id="difficult_to_zoneBox" caption="msg://com.company.klavr.entity/Difficulty.difficult_to_zone">
+                <hbox spacing="true">
+                    <checkBoxGroup orientation="horizontal" dataContainer="difficultyDc"/>
+                </hbox>
                 <table id="difficult_to_zoneTable" dataContainer="difficult_to_zoneDc" width="100%" height="200px">
                     <actions>
                         <action id="add" type="add"/>

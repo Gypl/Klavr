@@ -40,7 +40,7 @@
             </cssLayout>
 
             <!--Конпки-->
-            <checkBox css="display: block;"/>
+            <checkBox css="display: block;" caption="Скрыть клавиатуру"/>
 
             <cssLayout css="display: flex;">
                 <button caption="Й" css="

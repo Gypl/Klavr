@@ -45,12 +45,12 @@ public class Difficulty {
     @ManyToMany
     private List<Zone> difficult_to_zone;
 
-    public List<Zone> getDifficult_to_zone() {
-        return difficult_to_zone;
-    }
-
     public void setDifficult_to_zone(List<Zone> difficult_to_zone) {
         this.difficult_to_zone = difficult_to_zone;
+    }
+
+    public List<Zone> getDifficult_to_zone() {
+        return difficult_to_zone;
     }
 
     public Integer getPressTime() {

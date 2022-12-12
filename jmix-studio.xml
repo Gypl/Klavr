@@ -2,15 +2,15 @@
 <project version="4">
   <component name="JmixDataStoreSettingsManager">
     <moduleSettings>
-      <entry key="Klavr.main">
+      <entry key="com.company.Klavr.main">
         <ModuleSettings>
           <option name="dataStoreOptions">
             <map>
               <entry key="main">
                 <value>
                   <DataStoreSettings>
-                    <option name="generateDdlType" value="CREATE_AND_UPDATE" />
                     <option name="supportedTypes">
+                      <option value="postgres" />
                       <option value="hsql" />
                     </option>
                   </DataStoreSettings>
@@ -20,42 +20,6 @@
           </option>
         </ModuleSettings>
       </entry>
-      <entry key="com.company.Klavr.main">
-        <ModuleSettings>
-          <option name="dataStoreOptions">
-            <map>
-              <entry key="main">
-                <value>
-                  <DataStoreSettings />
-                </value>
-              </entry>
-            </map>
-          </option>
-        </ModuleSettings>
-      </entry>
     </moduleSettings>
-  </component>
-  <component name="JmixPluginProjectSettings">
-    <option name="savedDbProperties">
-      <list>
-        <SavedDbProperties>
-          <option name="databaseName" value="klavr" />
-          <option name="dbType" value="hsqlfile" />
-          <option name="dbmsVersion" />
-          <option name="host" value=".jmix/hsqldb" />
-          <option name="url" value="jdbc:hsqldb:file:.jmix/hsqldb/klavr" />
-          <option name="user" value="sa" />
-        </SavedDbProperties>
-        <SavedDbProperties>
-          <option name="databaseName" value="Base" />
-          <option name="dbType" value="postgres" />
-          <option name="dbmsVersion" />
-          <option name="host" value="localhost" />
-          <option name="pass" value="qwe32q" />
-          <option name="url" value="jdbc:postgresql://localhost/Base" />
-          <option name="user" value="postgres" />
-        </SavedDbProperties>
-      </list>
-    </option>
   </component>
 </project>
