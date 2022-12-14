@@ -132,4 +132,28 @@
                                  constraintName="FK_DIFZON_ON_ZONE" referencedColumnNames="ID"
                                  referencedTableName="ZONE_"/>
     </changeSet>
+    <changeSet id="11" author="Klavr">
+        <insert tableName="ZONE_" dbms="postgresql, mssql, hsqldb">
+            <column name="ID" value="1b7a420a-d1fc-4c42-8654-a9027ee14083"/>
+            <column name="SYMBOLS" value="кенгапромить"/>
+        </insert>
+    </changeSet>
+    <changeSet id="12" author="Klavr">
+        <insert tableName="ZONE_" dbms="postgresql, mssql, hsqldb">
+            <column name="ID" value="2b7a420a-d1fc-4c42-8654-a9027ee14083"/>
+            <column name="SYMBOLS" value="ушвлсб"/>
+        </insert>
+    </changeSet>
+    <changeSet id="13" author="Klavr">
+        <insert tableName="ZONE_" dbms="postgresql, mssql, hsqldb">
+            <column name="ID" value="3b7a420a-d1fc-4c42-8654-a9027ee14083"/>
+            <column name="SYMBOLS" value="щцдычю"/>
+        </insert>
+    </changeSet>
+    <changeSet id="14" author="Klavr">
+        <insert tableName="ZONE_" dbms="postgresql, mssql, hsqldb">
+            <column name="ID" value="4b7a420a-d1fc-4c42-8654-a9027ee14083"/>
+            <column name="SYMBOLS" value="зйфжяхъэ"/>
+        </insert>
+    </changeSet>
 </databaseChangeLog>

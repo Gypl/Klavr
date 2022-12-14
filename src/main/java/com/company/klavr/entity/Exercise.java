@@ -41,6 +41,10 @@ public class Exercise {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     private Difficulty exercise_to_difficulty;
 
+    public void setLength(Integer length) {
+        this.length = length;
+    }
+
     public Difficulty getExercise_to_difficulty() {
         return exercise_to_difficulty;
     }
