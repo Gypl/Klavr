@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.11.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1" author="Klavr">
+        <createTable tableName="DIFFICULTY">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_DIFFICULTY"/>
+            </column>
+            <column name="NAME" type="VARCHAR(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MISTAKES_COUNT" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MIN_LENGTH" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MAX_LENGTH" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PRESS_TIME" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="2" author="Klavr">
+        <createTable tableName="DIFFICULTY_ZONE_LINK">
+            <column name="DIFFICULTY_ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_DIFFICULTY_ZONE_LINK"/>
+            </column>
+            <column name="ZONE_ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_DIFFICULTY_ZONE_LINK"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="3" author="Klavr">
+        <createTable tableName="EXERCISE">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_EXERCISE"/>
+            </column>
+            <column name="NAME" type="VARCHAR(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="TEXT" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LENGTH" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="EXERCISE_TO_DIFFICULTY_ID" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="4" author="Klavr">
+        <createTable tableName="STATISTICS_">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_STATISTICS_"/>
+            </column>
+            <column name="FINISH_DATE" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="STATISTICS_TO_EXERCISE_ID" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="STATISTICS_TO_USER_ID" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="EXERCISE_LENGTH" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MISTAKES_COUNT" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MAX_MISTAKES" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="TIMER" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SPEED" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="5" author="Klavr">
+        <createTable tableName="ZONE_">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_ZONE_"/>
+            </column>
+            <column name="SYMBOLS" type="VARCHAR(60)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="6" author="Klavr">
+        <createIndex indexName="IDX_EXERCISE_EXERCISETODIFFICU" tableName="EXERCISE">
+            <column name="EXERCISE_TO_DIFFICULTY_ID"/>
+        </createIndex>
+
+        <addForeignKeyConstraint baseColumnNames="EXERCISE_TO_DIFFICULTY_ID" baseTableName="EXERCISE"
+                                 constraintName="FK_EXERCISE_ON_EXERCISETODIFFI" referencedColumnNames="ID"
+                                 referencedTableName="DIFFICULTY"/>
+    </changeSet>
+    <changeSet id="7" author="Klavr">
+        <createIndex indexName="IDX_STATISTICS_STATISTICSTOEXE" tableName="STATISTICS_">
+            <column name="STATISTICS_TO_EXERCISE_ID"/>
+        </createIndex>
+
+        <addForeignKeyConstraint baseColumnNames="STATISTICS_TO_EXERCISE_ID" baseTableName="STATISTICS_"
+                                 constraintName="FK_STATISTICS_ON_STATISTICSTOE" referencedColumnNames="ID"
+                                 referencedTableName="EXERCISE"/>
+    </changeSet>
+    <changeSet id="8" author="Klavr">
+        <createIndex indexName="IDX_STATISTICS_STATISTICSTOUSE" tableName="STATISTICS_">
+            <column name="STATISTICS_TO_USER_ID"/>
+        </createIndex>
+
+        <addForeignKeyConstraint baseColumnNames="STATISTICS_TO_USER_ID" baseTableName="STATISTICS_"
+                                 constraintName="FK_STATISTICS_ON_STATISTICSTOU" referencedColumnNames="ID"
+                                 referencedTableName="USER_"/>
+    </changeSet>
+    <changeSet id="9" author="Klavr">
+        <addForeignKeyConstraint baseColumnNames="DIFFICULTY_ID" baseTableName="DIFFICULTY_ZONE_LINK"
+                                 constraintName="FK_DIFZON_ON_DIFFICULTY" referencedColumnNames="ID"
+                                 referencedTableName="DIFFICULTY"/>
+    </changeSet>
+    <changeSet id="10" author="Klavr">
+        <addForeignKeyConstraint baseColumnNames="ZONE_ID" baseTableName="DIFFICULTY_ZONE_LINK"
+                                 constraintName="FK_DIFZON_ON_ZONE" referencedColumnNames="ID"
+                                 referencedTableName="ZONE_"/>
+    </changeSet>
+</databaseChangeLog>

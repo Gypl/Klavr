@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <window xmlns="http://jmix.io/schema/ui/window"
         caption="msg://exerciseScreen.caption">
-    <layout >
-        <cssLayout css="margin: 200px 30% auto 30%" align="TOP_CENTER">
+    <layout>
+        <cssLayout id="mainScreen" css="margin: 200px 30% auto 30%" align="TOP_CENTER">
             <cssLayout css="display: flex; margin-bottom: 20px">
                 <label value="&#1042;&#1088;&#1077;&#1084;&#1103;: "/>
                 <label css="margin-right: 150px"/>
@@ -24,19 +24,19 @@
                       border: 2px solid black;
                       justify-content: center;"
             >
-                <label
+                <label id="writtenText"
                     css="
                         color: #6e6767;
                         overflow: hidden;
                         flex-basis: 50%;
                         text-align: end;"
-                        value="те"/>
-                <label
+                        value=""/>
+                <label id="text"
                     css="
                         color: blue;
                         overflow: hidden;
                         flex-basis: 50%;"
-                    value="кст"/>
+                    value=""/>
             </cssLayout>
 
             <!--Конпки-->
@@ -70,8 +70,11 @@
                 "/>
                 <!--<jsComponent/>-->
             </cssLayout>
-
-
         </cssLayout>
+
+        <textArea textChangeEventMode="EAGER" align="BOTTOM_RIGHT" id="vasya" trim="false" tabIndex="55" rows="1"
+                  css="opacity: 0"/>
+        <textField textChangeEventMode="EAGER" align="BOTTOM_RIGHT" id="anton" tabIndex="55"
+                   css="opacity: 0"/>
     </layout>
 </window>
