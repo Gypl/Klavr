@@ -73,6 +73,6 @@
         </cssLayout>
 
         <textField textChangeEventMode="EAGER" align="BOTTOM_RIGHT" id="anton" tabIndex="55"
-                   css="opacity: 0"/>
+                   css="opacity: 0" datatype="string" trim="false"/> <!--opacity: 0-->
     </layout>
 </window>

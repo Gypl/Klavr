@@ -15,32 +15,73 @@ public class ExerciseScreen extends Screen {
     @Autowired
     private TextField anton;
 
-    private void updateUserInput(String input) {
-        System.out.println("----------------------");
-        System.out.println(input);
-        System.out.println("----------------------");
-        String str = text.getRawValue();
-        text.setValue(str.substring(1, str.length()-1));
+    private String written = "";
+    private String needed = "";
 
-        writtenText.setValue(writtenText.getRawValue()+input);
-    }
-
-    @Subscribe("anton")
-    public void onAntonValueChange(HasValue.ValueChangeEvent event) {
-        if(anton.getRawValue() != "") {
-            updateUserInput(anton.getRawValue());
-            anton.setValue("");
-        }
+    public ExerciseScreen() {
+        needed = "тест очка";
     }
 
     @Subscribe
     public void onInit(InitEvent event) {
-        text.setValue("text me");
+        needed = needed.replaceAll(" ", "\u00A0");
+        text.setValue(needed);
+    }
+
+    @Subscribe("anton")
+    public void onAntonValueChange(HasValue.ValueChangeEvent event) {
+        if(anton.getRawValue() == "") {
+            return;
+        }
+        if (needed == "") {
+            return;
+        }
+        handleInput();
+    }
+
+    private void exerciseDone() {
+        System.out.println("Well done");
+    }
+
+    private void wrongSymbol() {
+        System.err.println("Err");
+    }
+
+    private void handleInput() {
+        char inputSymbol = anton.getRawValue().charAt(0) == ' ' ? '\u00A0' : anton.getRawValue().charAt(0);
+        anton.setValue("");
+        if (correctSymbol(inputSymbol)) {
+            updateUserInput();
+            if (needed == "") {
+                exerciseDone();
+                return;
+            }
+        }
+        else {
+            wrongSymbol();
+        }
+    }
+
+    private void updateUserInput() {
+        if (needed != "") {
+            char changed = needed.charAt(0);
+            needed = getText(needed);
+            text.setValue(needed);
+            written += changed == ' ' ? "\u00A0":changed;
+            writtenText.setValue(written);
+        }
+    }
+
+    private String getText(String old) {
+        return old.substring(1, old.length());
+    }
+
+    private boolean correctSymbol(char inputSymbol) {
+        return inputSymbol == needed.charAt(0);
     }
 
     @Subscribe("mainScreen")
     public void onMainScreenLayoutClick(LayoutClickNotifier.LayoutClickEvent event) {
-        //focus input
         anton.focus();
     }
 }
