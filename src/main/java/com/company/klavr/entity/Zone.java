@@ -2,6 +2,7 @@ package com.company.klavr.entity;
 
 import io.jmix.core.entity.annotation.CaseConversion;
 import io.jmix.core.entity.annotation.JmixGeneratedValue;
+import io.jmix.core.metamodel.annotation.InstanceName;
 import io.jmix.core.metamodel.annotation.JmixEntity;
 
 import javax.persistence.*;
@@ -17,6 +18,7 @@ public class Zone {
     @Id
     private UUID id;
 
+    @InstanceName
     @CaseConversion
     @Column(name = "SYMBOLS", length = 60)
     private String symbols;

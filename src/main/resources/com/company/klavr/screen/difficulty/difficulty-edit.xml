@@ -11,6 +11,14 @@
             <loader/>
             <collection id="difficult_to_zoneDc" property="difficult_to_zone"/>
         </instance>
+        <collection id="zonesDc" class="com.company.klavr.entity.Zone">
+            <fetchPlan extends="_base"/>
+            <loader id="zonesDl">
+                <query>
+                    <![CDATA[select e from Zone_ e]]>
+                </query>
+            </loader>
+        </collection>
     </data>
     <facets>
         <dataLoadCoordinator auto="true"/>
@@ -32,12 +40,15 @@
             <form id="form" dataContainer="difficultyDc">
                 <column width="350px">
                     <textField id="nameField" property="name"/>
-                    <textField id="mistakesCountField" property="mistakesCount"/>
-                    <textField id="minLengthField" property="minLength"/>
-                    <textField id="maxLengthField" property="maxLength"/>
-                    <textField id="pressTimeField" property="pressTime"/>
+                    <slider id="mistakesSlider" property="mistakesCount" width="250" max="10.0"/>
+                    <slider id="minLengthSlider" property="minLength" width="250" min="50.0"/>
+                    <slider id="maxLengthSlider" property="maxLength" width="250" min="100.0" max="200.0"/>
+                    <slider id="pressTimeSlider" property="pressTime" width="250" min="1.0" max="4.0"/>
+                    <checkBoxGroup id="zoneTableCheckBoxGroup" property="difficult_to_zone" orientation="horizontal"
+                                   required="true" requiredMessage="lox"/>
                 </column>
             </form>
+
             <groupBox id="difficult_to_zoneBox" caption="msg://com.company.klavr.entity/Difficulty.difficult_to_zone">
                 <table id="difficult_to_zoneTable" dataContainer="difficult_to_zoneDc" width="100%" height="200px">
                     <actions>
