@@ -3,7 +3,6 @@
 
     <menu id="application" caption="msg://com.company.klavr/menu.application" insertBefore="administration">
         <item screen="User.browse" caption="msg://com.company.klavr.screen.user/UserBrowse.caption"/>
-        <item screen="themeSettingsScreen" caption="msg://io.jmix.ui.app.themesettings/themeSettings.caption"/>
         <item screen="Difficulty.browse" caption="msg://com.company.klavr.screen.difficulty/difficultyBrowse.menu"/>
         <item screen="Zone_.browse" caption="msg://com.company.klavr.screen.zone/zoneBrowse.menu"/>
         <item screen="Exercise.browse" caption="msg://com.company.klavr.screen.exercise/exerciseBrowse.menu"/>
@@ -13,6 +12,8 @@
               caption="msg://com.company.klavr.screen.statistics/statisticsAdminBrowse.menu"/>
         <item screen="ExerciseUser.browse" caption="msg://com.company.klavr.screen.exercise/exerciseUserBrowse.menu"/>
         <item screen="ExerciseScreen" caption="msg://com.company.klavr.screen.exercise/exerciseScreen.caption"/>
+        <item screen="RegisterScreen" caption="msg://com.company.klavr.screen.register/registerScreen.caption"/>
     </menu>
+    <item screen="themeSettingsScreen" caption="msg://io.jmix.ui.app.themesettings/themeSettings.caption"/>
 
 </menu-config>
