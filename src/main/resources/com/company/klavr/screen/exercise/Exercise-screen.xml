@@ -72,8 +72,6 @@
             </cssLayout>
         </cssLayout>
 
-        <textArea textChangeEventMode="EAGER" align="BOTTOM_RIGHT" id="vasya" trim="false" tabIndex="55" rows="1"
-                  css="opacity: 0"/>
         <textField textChangeEventMode="EAGER" align="BOTTOM_RIGHT" id="anton" tabIndex="55"
                    css="opacity: 0"/>
     </layout>

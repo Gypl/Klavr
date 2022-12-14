@@ -1,9 +1,6 @@
 package com.company.klavr.screen.exercise;
 
-import io.jmix.ui.Actions;
-import io.jmix.ui.Fragments;
 import io.jmix.ui.component.*;
-import io.jmix.ui.model.DataContext;
 import io.jmix.ui.screen.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
