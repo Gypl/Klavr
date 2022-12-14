@@ -10,6 +10,18 @@
             </fetchPlan>
             <loader/>
         </instance>
+        <instance id="difficultyDc" class="com.company.klavr.entity.Difficulty">
+            <fetchPlan extends="_base"/>
+            <loader id="difficultyDl"/>
+        </instance>
+        <collection id="difficultiesDc" class="com.company.klavr.entity.Difficulty">
+            <fetchPlan extends="_base"/>
+            <loader id="difficultiesDl">
+                <query>
+                    <![CDATA[select e from Difficulty e]]>
+                </query>
+            </loader>
+        </collection>
     </data>
     <facets>
         <dataLoadCoordinator auto="true"/>
@@ -30,16 +42,20 @@
         <form id="form" dataContainer="exerciseDc">
             <column width="350px">
                 <textField id="nameField" property="name"/>
-                <textField id="textField" property="text"/>
-                <textField id="lengthField" property="length"/>
-                <entityPicker id="exercise_to_difficultyField" property="exercise_to_difficulty">
-                    <actions>
-                        <action id="entityLookup" type="entity_lookup"/>
-                        <action id="entityClear" type="entity_clear"/>
-                    </actions>
-                </entityPicker>
+                <entityComboBox id="exercise_to_difficultyComboBox" property="exercise_to_difficulty" optionsContainer="difficultiesDc"
+                                nullOptionVisible="false"/>
+                <textField id="lengthField" property="length" editable="false"/>
             </column>
         </form>
+
+        <hbox spacing="true" width="600">
+            <textField id="textField" property="text" required="true" dataContainer="exerciseDc" rowspan="10"
+                       height="300px" width="400px"/>
+            <vbox spacing="true">
+                <button align="TOP_RIGHT"/>
+                <button align="TOP_RIGHT"/>
+            </vbox>
+        </hbox>
         <hbox id="editActions" spacing="true">
             <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
             <button id="closeBtn" action="windowClose"/>
