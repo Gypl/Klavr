@@ -2,20 +2,23 @@
 <window xmlns="http://jmix.io/schema/ui/window"
         caption="msg://exerciseScreen.caption">
     <layout>
-        <cssLayout id="mainScreen" css="margin: 200px 30% auto 30%" align="TOP_CENTER">
-            <cssLayout css="display: flex; margin-bottom: 20px">
-                <label value="&#1042;&#1088;&#1077;&#1084;&#1103;: "/>
-                <label css="margin-right: 150px"/>
-
-                <label value="&#1044;&#1083;&#1080;&#1085;&#1072;: "/>
-                <label css="margin-right: 150px"/>
-
-                <label value="&#1054;&#1096;&#1080;&#1073;&#1082;&#1080;: "/>
-                <label css="margin-right: 150px"/>
+        <cssLayout id="mainScreen" css="margin: 200px 30% auto 25%; width: 50%" align="TOP_CENTER">
+            <cssLayout css="display: flex; margin-bottom: 30px; column-gap: 35%;">
+                <cssLayout >
+                    <label value="&#1042;&#1088;&#1077;&#1084;&#1103;: "/>
+                    <label/><!--css="margin-right: 150px"-->
+                </cssLayout>
+                <cssLayout >
+                    <label value="&#1044;&#1083;&#1080;&#1085;&#1072;: "/>
+                    <label /> <!-- css="margin-right: 150px"-->
+                </cssLayout>
+                <cssLayout >
+                    <label value="&#1054;&#1096;&#1080;&#1073;&#1082;&#1080;: "/>
+                    <label /> <!--css="margin-right: 150px"-->
+                </cssLayout>
             </cssLayout>
 
             <label
-                    stylename="test"
                     value="&#1042;&#1074;&#1086;&#1076;&#1080;&#1090;&#1077; &#1091;&#1082;&#1072;&#1079;&#1072;&#1085;&#1085;&#1099;&#1077; &#1089;&#1080;&#1084;&#1074;&#1086;&#1083;&#1099;:"/>
 
             <cssLayout
@@ -40,36 +43,199 @@
             </cssLayout>
 
             <!--Конпки-->
-            <checkBox css="display: block;"/>
-
-            <cssLayout css="display: flex;">
-                <button caption="Й" css="
-                    height: 35px;
-                    width: 35px;
-                    padding: 0;
-                "/>
-                <button caption="Ц" css="
-                    height: 35px;
-                    width: 35px;
-                    padding: 0;
-                "/>
-                <button caption="У" css="
-                    height: 35px;
-                    width: 35px;
-                    padding: 0;
-                "/>
-                <button caption="К" css="
-                    height: 35px;
-                    width: 35px;
-                    padding: 0;
-                "/>
-                <button caption="Е" css="
-                    height: 35px;
-                    width: 35px;
-                    padding: 0;
-                "/>
-                <!--<jsComponent/>-->
+            <cssLayout css="display: block; margin-top: 30px">
+                <checkBox id="keyboardCheckBox"/>
+                <label
+                   value="Виртуальная клавиатура"/>
             </cssLayout>
+            <cssLayout id="keyboardBox" width="100%" css="border: 2px ridge rgba(84, 81, 81, 0.6); display: flex; row-gap: 4px;
+            flex-direction: column; max-width: 530px;
+            margin-left: auto; margin-right: auto; padding: 2px">
+                <cssLayout css="display: flex; flex-direction: row; flex-wrap: nowrap; column-gap: 4px; justify-content: center;">
+                    <button caption="Й" css="
+                        height: 40px;
+                        width: 40px;
+                        padding: 0;
+                    "
+                    />
+                    <button caption="Ц" css="
+                        height: 40px;
+                        width: 40px;
+                        padding: 0;
+                    "/>
+                    <button caption="У" css="
+                        height: 40px;
+                        width: 40px;
+                        padding: 0;
+                    "/>
+                    <button caption="К" css="
+                        height: 40px;
+                        width: 40px;
+                        padding: 0;
+                    "/>
+                    <button caption="Е" css="
+                        height: 40px;
+                        width: 40px;
+                        padding: 0;
+                    "/>
+                    <button caption="Н" css="
+                        height: 40px;
+                        width: 40px;
+                        padding: 0;
+                    "/>
+                    <button caption="Г" css="
+                        height: 40px;
+                        width: 40px;
+                        padding: 0;
+                    "/>
+                    <button caption="Ш" css="
+                        height: 40px;
+                        width: 40px;
+                        padding: 0;
+                    "/>
+                    <button caption="Щ" css="
+                        height: 40px;
+                        width: 40px;
+                        padding: 0;
+                    "/>
+                    <button caption="З" css="
+                        height: 40px;
+                        width: 40px;
+                        padding: 0;
+                    "/>
+                    <button caption="Х" css="
+                        height: 40px;
+                        width: 40px;
+                        padding: 0;
+                    "/>
+                    <button caption="Ъ" css="
+                        height: 40px;
+                        width: 40px;
+                        padding: 0;
+                    "/>
+                </cssLayout>
+
+                <cssLayout css="display: flex; flex-direction: row; flex-wrap: nowrap; column-gap: 4px; justify-content: center;">
+                    <button caption="Ф" css="
+                        height: 40px;
+                        width: 40px;
+                        padding: 0;
+                    "/>
+                    <button caption="Ы" css="
+                        height: 40px;
+                        width: 40px;
+                        padding: 0;
+                    "/>
+                    <button caption="В" css="
+                        height: 40px;
+                        width: 40px;
+                        padding: 0;
+                    "/>
+                    <button caption="А" css="
+                        height: 40px;
+                        width: 40px;
+                        padding: 0;
+                    "/>
+                    <button caption="П" css="
+                        height: 40px;
+                        width: 40px;
+                        padding: 0;
+                    "/>
+                    <button caption="Р" css="
+                        height: 40px;
+                        width: 40px;
+                        padding: 0;
+                    "/>
+                    <button caption="О" css="
+                        height: 40px;
+                        width: 40px;
+                        padding: 0;
+                    "/>
+                    <button caption="Л" css="
+                        height: 40px;
+                        width: 40px;
+                        padding: 0;
+                    "/>
+                    <button caption="Д" css="
+                        height: 40px;
+                        width: 40px;
+                        padding: 0;
+                    "/>
+                    <button caption="Ж" css="
+                        height: 40px;
+                        width: 40px;
+                        padding: 0;
+                    "/>
+                    <button caption="Э" css="
+                        height: 40px;
+                        width: 40px;
+                        padding: 0;
+                    "/>
+                </cssLayout>
+
+                <cssLayout css="display: flex; flex-direction: row; flex-wrap: nowrap; column-gap: 4px; justify-content: center;">
+                    <button caption="Я" css="
+                        height: 40px;
+                        width: 40px;
+                        padding: 0;
+                    "/>
+                    <button caption="Ч" css="
+                        height: 40px;
+                        width: 40px;
+                        padding: 0;
+                    "/>
+                    <button caption="С" css="
+                        height: 40px;
+                        width: 40px;
+                        padding: 0;
+                    "/>
+                    <button caption="М" css="
+                        height: 40px;
+                        width: 40px;
+                        padding: 0;
+                    "/>
+                    <button caption="И" css="
+                        height: 40px;
+                        width: 40px;
+                        padding: 0;
+                    "/>
+                    <button caption="Т" css="
+                        height: 40px;
+                        width: 40px;
+                        padding: 0;
+                    "/>
+                    <button caption="Ь" css="
+                        height: 40px;
+                        width: 40px;
+                        padding: 0;
+                    "/>
+                    <button caption="Б" css="
+                        height: 40px;
+                        width: 40px;
+                        padding: 0;
+                    "/>
+                    <button caption="Ю" css="
+                        height: 40px;
+                        width: 40px;
+                        padding: 0;
+                    "/>
+                    <button caption="." css="
+                        height: 40px;
+                        width: 40px;
+                        padding: 0;
+                    "/>
+                </cssLayout>
+
+                <cssLayout css="display: flex; flex-direction: row; flex-wrap: nowrap; column-gap: 4px; justify-content: center;">
+                    <button caption=" " css="
+                        height: 40px;
+                        width: 240px;
+                        padding: 0;
+                    "/>
+                </cssLayout>
+
+            </cssLayout>
+
         </cssLayout>
 
         <textField textChangeEventMode="EAGER" align="BOTTOM_RIGHT" id="anton" tabIndex="55"

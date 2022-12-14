@@ -1,8 +1,6 @@
 @import "Exercise-defaults";
-@import "addons";
 @import "Exercise";
 
 .Exercise {
-  @include addons;
   @include Exercise;
 }

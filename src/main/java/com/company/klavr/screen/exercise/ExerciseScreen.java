@@ -14,7 +14,10 @@ public class ExerciseScreen extends Screen {
     private Label text;
     @Autowired
     private TextField anton;
-
+    @Autowired
+    private CheckBox keyboardCheckBox;
+    @Autowired
+    private CssLayout keyboardBox;
     private String written = "";
     private String needed = "";
 
@@ -26,6 +29,26 @@ public class ExerciseScreen extends Screen {
     public void onInit(InitEvent event) {
         needed = needed.replaceAll(" ", "\u00A0");
         text.setValue(needed);
+
+        keyboardBox.setVisible(keyboardCheckBox.isChecked());
+    }
+
+    private void showKeyPress(char clicked) {
+        keyboardBox.getComponents().forEach(
+            component -> {
+                if(component.toString().contains("Button")) {
+                    Button button = (Button) component;
+                    if (button.getCaption().toUpperCase() == String.valueOf(clicked).toUpperCase()) {
+                        button.click();
+                    }
+                }
+            }
+        );
+    }
+
+    @Subscribe("keyboardCheckBox")
+    public void onKeyboardCheckBoxValueChange(HasValue.ValueChangeEvent<Boolean> event) {
+        keyboardBox.setVisible(event.getValue());
     }
 
     @Subscribe("anton")
@@ -49,6 +72,7 @@ public class ExerciseScreen extends Screen {
 
     private void handleInput() {
         char inputSymbol = anton.getRawValue().charAt(0) == ' ' ? '\u00A0' : anton.getRawValue().charAt(0);
+        showKeyPress(inputSymbol);
         anton.setValue("");
         if (correctSymbol(inputSymbol)) {
             updateUserInput();
