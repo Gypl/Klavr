@@ -43,17 +43,18 @@
             <column width="350px">
                 <textField id="nameField" property="name"/>
                 <entityComboBox id="exercise_to_difficultyComboBox" property="exercise_to_difficulty" optionsContainer="difficultiesDc"
-                                nullOptionVisible="false"/>
+                                nullOptionVisible="false" required="true"/>
                 <textField id="lengthField" property="length" editable="false"/>
             </column>
         </form>
 
         <hbox spacing="true" width="600">
             <textArea id="textField" property="text" required="true" dataContainer="exerciseDc" rowspan="10"
-                      height="300px" width="400px" trim="false"/>
+                      height="300px" width="AUTO" trim="false"/>
             <vbox spacing="true">
-                <button align="TOP_RIGHT"/>
-                <button align="TOP_RIGHT"/>
+                <button id="generateText" align="TOP_RIGHT"/>
+                <fileUpload id="loadFile" align="TOP_RIGHT"
+                            uploadButtonDescription="&#1047;&#1072;&#1075;&#1088;&#1091;&#1079;&#1080;&#1090;&#1100; &#1092;&#1072;&#1081;&#1083;"/>
             </vbox>
         </hbox>
         <hbox id="editActions" spacing="true">

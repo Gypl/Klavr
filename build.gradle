@@ -25,7 +25,6 @@ dependencies {
     implementation 'io.jmix.data:jmix-eclipselink-starter'
     implementation 'io.jmix.ui:jmix-ui-starter'
     implementation 'io.jmix.ui:jmix-ui-data-starter'
-    implementation 'io.jmix.ui:jmix-ui-widgets-compiled'
     implementation 'io.jmix.security:jmix-security-starter'
     implementation 'io.jmix.security:jmix-security-ui-starter'
     implementation 'io.jmix.security:jmix-security-data-starter'
@@ -45,8 +44,16 @@ dependencies {
     themes 'io.jmix.ui:jmix-ui-themes'
     implementation 'io.jmix.ui:jmix-ui-themes'
 
+    widgets 'io.jmix.ui:jmix-ui-widgets'
+    widgets 'io.jmix.ui:jmix-charts-widgets'
+    implementation 'io.jmix.ui:jmix-charts-starter'
 }
 
 test {
     useJUnitPlatform()
+}
+
+compileWidgets {
+    generate "com.company.klavr.widgets.CustomWidgetSet"
+    includePaths("**/io/jmix/**/widget/**", "**/com/company/klavr/widgets/**")
 }
