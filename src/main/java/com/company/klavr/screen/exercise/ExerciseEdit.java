@@ -20,6 +20,23 @@ import java.util.Random;
 public class ExerciseEdit extends StandardEditor<Exercise> {
     @Autowired
     private DataManager dataManager;
+    @Subscribe
+    public void onBeforeCommitChanges(BeforeCommitChangesEvent event) {
+        if(exercise_to_difficultyComboBox.getValue() == null) {
+            notifications.create(Notifications.NotificationType.TRAY)
+                    .withCaption(messages.getMessage("com.company.klavr.NoDifficulty")).show();
+        }
+        else {
+            Difficulty curDiff = exercise_to_difficultyComboBox.getValue();
+            int textLgth = textField.getValue().length();
+
+            if((textLgth < curDiff.getMinLength()) || (textLgth > curDiff.getMaxLength()) || (textLgth < curDiff.getMinLength() && textLgth > curDiff.getMaxLength())){
+                notifications.create(Notifications.NotificationType.TRAY)
+                        .withCaption(messages.getMessage("com.company.klavr.incorrectLength")).show();
+                event.preventCommit();
+            }
+        }
+    }
     @Autowired
     private TextArea<String> textField;
     @Autowired
