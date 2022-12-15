@@ -1,18 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <menu-config xmlns="http://jmix.io/schema/ui/menu">
 
-    <menu id="application" caption="msg://com.company.klavr/menu.application" insertBefore="administration">
-        <item screen="User.browse" caption="msg://com.company.klavr.screen.user/UserBrowse.caption"/>
-        <item screen="Difficulty.browse" caption="msg://com.company.klavr.screen.difficulty/difficultyBrowse.menu"/>
-        <item screen="Zone_.browse" caption="msg://com.company.klavr.screen.zone/zoneBrowse.menu"/>
-        <item screen="Exercise.browse" caption="msg://com.company.klavr.screen.exercise/exerciseBrowse.menu"/>
+    <menu id="application" caption="msg://com.company.klavr/menu.application" insertBefore="administration"
+          expanded="true">
         <item screen="Statistics_User.browse"
-              caption="msg://com.company.klavr.screen.statistics/statisticsUserBrowse.menu"/>
-        <item screen="Statistics_Admin.browse"
-              caption="msg://com.company.klavr.screen.statistics/statisticsAdminBrowse.menu"/>
-        <item screen="ExerciseUser.browse" caption="msg://com.company.klavr.screen.exercise/exerciseUserBrowse.menu"/>
-        <item screen="ExerciseScreen" caption="msg://com.company.klavr.screen.exercise/exerciseScreen.caption"/>
+              caption="msg://com.company.klavr.screen.statistics/statisticsUserBrowse.menu" icon="AREA_CHART"/>
+        <item screen="ExerciseUser.browse" caption="msg://com.company.klavr.screen.exercise/exerciseUserBrowse.menu"
+              icon="ADD_ACTION"/>
+        <item screen="ExerciseScreen" caption="msg://com.company.klavr.screen.exercise/exerciseScreen.caption"
+              icon="GRADUATION_CAP"/>
         <item screen="RegisterScreen" caption="msg://com.company.klavr.screen.register/registerScreen.caption"/>
+    </menu>
+    <menu id="administrate" caption="msg://com.company.klavr/menu_config.Administrate" insertBefore="administration"
+          expanded="true">
+        <item screen="Exercise.browse" caption="msg://com.company.klavr.screen.exercise/exerciseBrowse.menu"
+              icon="FILE_TEXT"/>
+        <item screen="Zone_.browse" caption="msg://com.company.klavr.screen.zone/zoneBrowse.menu"/>
+        <item screen="Difficulty.browse" caption="msg://com.company.klavr.screen.difficulty/difficultyBrowse.menu"
+              icon="FIRE"/>
+        <item screen="User.browse" caption="msg://com.company.klavr.screen.user/UserBrowse.caption"
+              icon="ADDRESS_BOOK_O"/>
+        <item screen="Statistics_Admin.browse"
+              caption="msg://com.company.klavr.screen.statistics/statisticsAdminBrowse.menu" icon="AREA_CHART"/>
     </menu>
     <item screen="themeSettingsScreen" caption="msg://io.jmix.ui.app.themesettings/themeSettings.caption"/>
 

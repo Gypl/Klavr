@@ -25,6 +25,7 @@ dependencies {
     implementation 'io.jmix.data:jmix-eclipselink-starter'
     implementation 'io.jmix.ui:jmix-ui-starter'
     implementation 'io.jmix.ui:jmix-ui-data-starter'
+    implementation 'io.jmix.ui:jmix-ui-widgets-compiled'
     implementation 'io.jmix.security:jmix-security-starter'
     implementation 'io.jmix.security:jmix-security-ui-starter'
     implementation 'io.jmix.security:jmix-security-data-starter'
@@ -47,6 +48,8 @@ dependencies {
     widgets 'io.jmix.ui:jmix-ui-widgets'
     widgets 'io.jmix.ui:jmix-charts-widgets'
     implementation 'io.jmix.ui:jmix-charts-starter'
+    implementation 'io.jmix.translations:jmix-translations-ru'
+    implementation 'io.jmix.translations:jmix-translations-ru'
 }
 
 test {
