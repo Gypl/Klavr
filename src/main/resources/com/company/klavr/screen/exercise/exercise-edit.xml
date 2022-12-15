@@ -49,8 +49,8 @@
         </form>
 
         <hbox spacing="true" width="600">
-            <textField id="textField" property="text" required="true" dataContainer="exerciseDc" rowspan="10"
-                       height="300px" width="400px"/>
+            <textArea id="textField" property="text" required="true" dataContainer="exerciseDc" rowspan="10"
+                      height="300px" width="400px" trim="false"/>
             <vbox spacing="true">
                 <button align="TOP_RIGHT"/>
                 <button align="TOP_RIGHT"/>
