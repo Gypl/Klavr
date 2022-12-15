@@ -1,20 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <window xmlns="http://jmix.io/schema/ui/window"
         caption="msg://exerciseScreen.caption">
+    <facets>
+        <timer id="timer" delay="1000" repeating="true"/>
+        <messageDialog id="messageDialog" modal="true"/>
+
+    </facets>
     <layout>
         <cssLayout id="mainScreen" css="margin: 200px 30% auto 25%; width: 50%" align="TOP_CENTER">
-            <cssLayout css="display: flex; margin-bottom: 30px; column-gap: 35%;">
+            <cssLayout css="display: flex; margin-bottom: 30px; column-gap: 25%; justify-content: center;">
                 <cssLayout >
-                    <label value="&#1042;&#1088;&#1077;&#1084;&#1103;: "/>
-                    <label/><!--css="margin-right: 150px"-->
+                    <label value="&#1042;&#1088;&#1077;&#1084;&#1103;:"/>
+                    <label id="timeLabel"/><!--css="margin-right: 150px"-->
                 </cssLayout>
                 <cssLayout >
-                    <label value="&#1044;&#1083;&#1080;&#1085;&#1072;: "/>
-                    <label /> <!-- css="margin-right: 150px"-->
+                    <label value="&#1044;&#1083;&#1080;&#1085;&#1072;:"/>
+                    <label id="lengthLabel"/> <!-- css="margin-right: 150px"-->
                 </cssLayout>
                 <cssLayout >
-                    <label value="&#1054;&#1096;&#1080;&#1073;&#1082;&#1080;: "/>
-                    <label /> <!--css="margin-right: 150px"-->
+                    <label value="&#1054;&#1096;&#1080;&#1073;&#1082;&#1080;:"/>
+                    <label id="mistakesLabel"/> <!--css="margin-right: 150px"-->
                 </cssLayout>
             </cssLayout>
 
@@ -233,8 +238,10 @@
                         padding: 0;
                     "/>
                 </cssLayout>
-
             </cssLayout>
+
+            <button primary="true" id="completeButton" css="margin: 20px auto 0 auto; display: table;"
+                    caption="&#1047;&#1072;&#1074;&#1077;&#1088;&#1096;&#1080;&#1090;&#1100; &#1091;&#1087;&#1088;&#1072;&#1078;&#1085;&#1077;&#1085;&#1080;&#1077;"/>
 
         </cssLayout>
 
