@@ -4,7 +4,6 @@
     <facets>
         <timer id="timer" delay="1000" repeating="true"/>
         <messageDialog id="messageDialog" modal="true"/>
-
     </facets>
     <layout>
         <cssLayout id="mainScreen" css="margin: 200px 30% auto 25%; width: 50%" align="TOP_CENTER">

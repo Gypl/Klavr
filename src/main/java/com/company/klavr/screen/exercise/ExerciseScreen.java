@@ -1,11 +1,15 @@
 package com.company.klavr.screen.exercise;
 
+import com.company.klavr.entity.Exercise;
 import com.company.klavr.entity.Statistics;
 import com.company.klavr.logic.ExerciseHandler;
 import io.jmix.core.DataManager;
+import io.jmix.ui.Actions;
 import io.jmix.ui.component.*;
 import io.jmix.ui.screen.*;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.UUID;
 
 @UiController("ExerciseScreen")
 @UiDescriptor("Exercise-screen.xml")
@@ -41,13 +45,19 @@ public class ExerciseScreen extends Screen {
     @Autowired
     private MessageDialogFacet messageDialog;
 
-    public ExerciseScreen() {
-        exerciseHandler = new ExerciseHandler(255, 10);
-        needed = "тест очка";
+    private UUID id;
+    private Exercise exercise;
+
+    public void setExerciseId(UUID id) {
+        this.id = id;
     }
 
     @Subscribe
-    public void onInit(InitEvent event) {
+    public void onAfterShow(AfterShowEvent event) {
+        needed = exercise.getText();
+        exerciseHandler = new ExerciseHandler(needed.length(), 10);
+
+
         needed = needed.replaceAll(" ", "\u00A0");
         text.setValue(needed);
         timeLabel.setValue(String.format(" %d сек", 0));
@@ -55,6 +65,18 @@ public class ExerciseScreen extends Screen {
         mistakesLabel.setValue(String.format(" 0/%d", exerciseHandler.getMaxMistakes()));
 
         keyboardBox.setVisible(keyboardCheckBox.isChecked());
+    }
+
+    public void setExercise(Exercise exercise) {
+        this.exercise = exercise;
+    }
+
+    public ExerciseScreen() {
+    }
+
+    @Subscribe
+    public void onInit(InitEvent event) {
+
     }
 
     private void saveStatistics() {
