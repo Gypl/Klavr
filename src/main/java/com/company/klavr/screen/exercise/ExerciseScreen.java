@@ -140,9 +140,12 @@ public class ExerciseScreen extends Screen {
     private void executionStop() {
         timer.stop();
         canExecution = false;
+        isTimer = true;
         if (timerValue != 0) {
             exerciseHandler.setAverageSpeed(Math.round(exerciseHandler.getCurrentLength()/timerValue));
         }
+        messageDialog.setMessage(getFinalMessage());
+        messageDialog.show();
     }
 
     private void wrongSymbol() {
@@ -186,9 +189,6 @@ public class ExerciseScreen extends Screen {
     @Subscribe("completeButton")
     public void onCompleteButtonClick(Button.ClickEvent event) {
         executionStop();
-        messageDialog.setMessage(getFinalMessage());
-        messageDialog.show();
-
     }
 
     private String getFinalMessage() {
