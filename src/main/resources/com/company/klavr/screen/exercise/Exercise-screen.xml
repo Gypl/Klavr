@@ -26,24 +26,55 @@
                     value="&#1042;&#1074;&#1086;&#1076;&#1080;&#1090;&#1077; &#1091;&#1082;&#1072;&#1079;&#1072;&#1085;&#1085;&#1099;&#1077; &#1089;&#1080;&#1084;&#1074;&#1086;&#1083;&#1099;:"/>
 
             <cssLayout
-                css="display: flex;
-                      margin: 20px;
-                      border: 2px solid black;
-                      justify-content: center;"
+                    css="border: 7px solid #99b4d1;
+    border-radius: 14px;
+    box-shadow: 1px 1px 8px 0 rgb(0 0 0 / 20%);
+    font: normal 56px/70px Courier New,Fallback Courier New,monospace,serif;
+    height: 82px;
+    letter-spacing: 0;
+    margin: 0 auto;
+    overflow: hidden;
+    vertical-align: middle;
+    width: 90%;
+
+"
             >
                 <label id="writtenText"
-                    css="
-                        color: #6e6767;
-                        overflow: hidden;
-                        flex-basis: 50%;
-                        text-align: end;"
-                        value=""/>
+                       css="
+                       display: inline-block;
+    float: left;
+    height: 100%;
+    overflow: hidden;
+    text-overflow: clip;
+    white-space: pre;
+    width: 50%;
+
+    background: #e3e6e9;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+    color: #cbc9cd;
+    text-align: right;
+
+
+"
+                       value=""/>
                 <label id="text"
-                    css="
-                        color: blue;
-                        overflow: hidden;
-                        flex-basis: 50%;"
-                    value=""/>
+                       css="
+                       display: inline-block;
+    float: left;
+    height: 100%;
+    overflow: hidden;
+    text-overflow: clip;
+    white-space: pre;
+    width: 50%;
+
+        background: #fff;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+    color: #333;
+    text-align: left;
+"
+                       value=""/>
             </cssLayout>
 
             <!--Конпки-->

@@ -65,7 +65,6 @@ public class ExerciseScreen extends Screen {
         needed = exercise.getText();
         exerciseHandler = new ExerciseHandler(needed.length(), 10);
 
-
         needed = needed.replaceAll(" ", "\u00A0");
         text.setValue(needed);
         timeLabel.setValue(String.format(" %d сек", 0));
@@ -88,10 +87,12 @@ public class ExerciseScreen extends Screen {
     }
 
     private void saveStatistics() {
-        Statistics statistics = dataManager.create(Statistics.class);
+        /*Statistics statistics = dataManager.create(Statistics.class);
         //statistics.setStatistics_to_exercise(dataManager.load);
+        String userName = currentAuthentication.getUser().getUsername().toString();
+        System.out.println(userName);
         User currentUser = dataManager.load(User.class)
-                .condition(PropertyCondition.contains("USERNAME", currentAuthentication.getUser().getUsername()))
+                .condition(PropertyCondition.contains("USERNAME", userName))
                 .one();
 
         statistics.setFinishDate(new Date());
@@ -102,7 +103,7 @@ public class ExerciseScreen extends Screen {
         statistics.setMaxMistakes(exercise.getExercise_to_difficulty().getMistakesCount());
         statistics.setTimer(timerValue);
         statistics.setSpeed(exerciseHandler.getAverageSpeed());
-        dataManager.save(statistics);
+        dataManager.save(statistics);*/
     }
 
     private void showKeyPress(char clicked) {
@@ -162,7 +163,7 @@ public class ExerciseScreen extends Screen {
         }
         messageDialog.setMessage(getFinalMessage());
         messageDialog.show();
-        saveStatistics();
+        //saveStatistics();
     }
 
     private void wrongSymbol() {

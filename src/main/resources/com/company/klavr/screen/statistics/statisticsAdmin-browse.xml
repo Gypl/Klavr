@@ -16,7 +16,7 @@
                 </query>
             </loader>
         </collection>
-        <instance id="exerciseDc" class="com.company.klavr.entity.Exercise">
+        <!--<instance id="exerciseDc" class="com.company.klavr.entity.Exercise">
             <fetchPlan extends="_base"/>
             <loader id="exerciseDl"/>
         </instance>
@@ -39,7 +39,7 @@
                     <![CDATA[select e from User e]]>
                 </query>
             </loader>
-        </collection>
+        </collection>-->
     </data>
     <facets>
         <dataLoadCoordinator auto="true"/>
@@ -62,11 +62,11 @@
                 dataLoader="statisticsesDl">
             <properties include=".*"/>
         </filter>
-        <hbox spacing="true">
+        <!--<hbox spacing="true">
             <entityComboBox id="exerciseComboBox" dataContainer="exerciseDc"
                             description="msg://exerciseComboBox.description"/>
             <entityComboBox id="userComboBox" dataContainer="userDc" description="msg://userComboBox.description"/>
-        </hbox>
+        </hbox>-->
         <chart:serialChart/>
         <groupTable id="statisticsesTable"
                     width="100%"

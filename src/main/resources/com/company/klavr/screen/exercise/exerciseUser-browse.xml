@@ -6,7 +6,9 @@
     <data readOnly="true">
         <collection id="exercisesDc"
                     class="com.company.klavr.entity.Exercise">
-            <fetchPlan extends="_base"/>
+            <fetchPlan extends="_base">
+                <property name="exercise_to_difficulty" fetchPlan="_base"/>
+            </fetchPlan>
             <loader id="exercisesDl">
                 <query>
                     <![CDATA[select e from Exercise e]]>
@@ -45,6 +47,7 @@
                 <column id="name"/>
                 <column id="text"/>
                 <column id="length"/>
+                <column id="exercise_to_difficulty"/>
             </columns>
             <simplePagination/>
             <buttonsPanel id="buttonsPanel"
