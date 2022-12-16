@@ -2,7 +2,7 @@
 <window xmlns="http://jmix.io/schema/ui/window"
         xmlns:c="http://jmix.io/schema/ui/jpql-condition"
         caption="msg://statisticsUserBrowse.caption"
-        focusComponent="statisticsesTable">
+        focusComponent="statisticsesTable" xmlns:chart="http://jmix.io/schema/ui/charts">
     <data readOnly="true">
         <collection id="statisticsesDc"
                     class="com.company.klavr.entity.Statistics">
@@ -38,6 +38,8 @@
                 dataLoader="statisticsesDl">
             <properties include=".*"/>
         </filter>
+        <entityComboBox/>
+        <chart:serialChart/>
         <groupTable id="statisticsesTable"
                     width="100%"
                     dataContainer="statisticsesDc">
@@ -57,7 +59,7 @@
             <simplePagination/>
             <buttonsPanel id="buttonsPanel"
                           alwaysVisible="true">
-                <button id="refreshBtn" action="statisticsesTable.refresh"/>
+                <button id="refreshBtn" action="statisticsesTable.refresh" visible="false"/>
             </buttonsPanel>
         </groupTable>
         <hbox id="lookupActions" spacing="true" visible="false">

@@ -45,25 +45,9 @@
                     <slider id="maxLengthSlider" property="maxLength" width="250" min="100.0" max="200.0"/>
                     <slider id="pressTimeSlider" property="pressTime" width="250" min="1.0" max="4.0"/>
                     <checkBoxGroup id="zoneTableCheckBoxGroup" property="difficult_to_zone" orientation="horizontal"
-                                   required="true" requiredMessage="lox"/>
+                                   required="true" requiredMessage="Выберите зоны"/>
                 </column>
             </form>
-
-            <groupBox id="difficult_to_zoneBox" caption="msg://com.company.klavr.entity/Difficulty.difficult_to_zone">
-                <table id="difficult_to_zoneTable" dataContainer="difficult_to_zoneDc" width="100%" height="200px">
-                    <actions>
-                        <action id="add" type="add"/>
-                        <action id="exclude" type="exclude"/>
-                    </actions>
-                    <columns>
-                        <column id="symbols"/>
-                    </columns>
-                    <buttonsPanel>
-                        <button action="difficult_to_zoneTable.add"/>
-                        <button action="difficult_to_zoneTable.exclude"/>
-                    </buttonsPanel>
-                </table>
-            </groupBox>
         </scrollBox>
         <hbox id="editActions" spacing="true">
             <button id="commitAndCloseBtn" action="windowCommitAndClose"/>

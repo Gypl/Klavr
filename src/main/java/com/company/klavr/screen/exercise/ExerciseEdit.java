@@ -30,6 +30,16 @@ public class ExerciseEdit extends StandardEditor<Exercise> {
             Difficulty curDiff = exercise_to_difficultyComboBox.getValue();
             int textLgth = textField.getValue().length();
 
+
+            List<Zone> zones = curDiff.getDifficult_to_zone();
+            String symbols = "[^";
+            for(Zone zone : zones){
+                symbols+=zone.getSymbols();
+            }
+            symbols+="]";
+
+            textField.setValue(textField.getValue().replaceAll(symbols, ""));
+
             if((textLgth < curDiff.getMinLength()) || (textLgth > curDiff.getMaxLength()) || (textLgth < curDiff.getMinLength() && textLgth > curDiff.getMaxLength())){
                 notifications.create(Notifications.NotificationType.TRAY)
                         .withCaption(messages.getMessage("com.company.klavr.incorrectLength")).show();

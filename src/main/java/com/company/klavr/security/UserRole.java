@@ -13,7 +13,7 @@ import io.jmix.securityui.role.annotation.ScreenPolicy;
 @ResourceRole(name = "User", code = "user")
 public interface UserRole extends UiMinimalRole {
     @EntityAttributePolicy(entityClass = Statistics.class, attributes = "*", action = EntityAttributePolicyAction.VIEW)
-    @EntityPolicy(entityClass = Statistics.class, actions = {EntityPolicyAction.CREATE, EntityPolicyAction.READ})
+    @EntityPolicy(entityClass = Statistics.class, actions = {EntityPolicyAction.CREATE, EntityPolicyAction.READ, EntityPolicyAction.UPDATE})
     void statistics();
 
     @EntityAttributePolicy(entityClass = Exercise.class, attributes = "*", action = EntityAttributePolicyAction.VIEW)

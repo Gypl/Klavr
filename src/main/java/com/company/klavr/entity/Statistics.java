@@ -45,9 +45,9 @@ public class Statistics {
     @NotNull
     private Integer mistakesCount;
 
-    @Column(name = "MAX_MISTAKES", nullable = false)
     @NotNull
-    private String maxMistakes;
+    @Column(name = "MAX_MISTAKES", nullable = false)
+    private Integer maxMistakes;
 
     @Column(name = "TIMER", nullable = false)
     @NotNull
@@ -56,6 +56,14 @@ public class Statistics {
     @Column(name = "SPEED", nullable = false)
     @NotNull
     private Integer speed;
+
+    public void setMaxMistakes(Integer maxMistakes) {
+        this.maxMistakes = maxMistakes;
+    }
+
+    public Integer getMaxMistakes() {
+        return maxMistakes;
+    }
 
     public void setStatistics_to_exercise(Exercise statistics_to_exercise) {
         this.statistics_to_exercise = statistics_to_exercise;
@@ -75,10 +83,6 @@ public class Statistics {
 
     public void setTimer(Integer timer) {
         this.timer = timer;
-    }
-
-    public void setMaxMistakes(String maxMistakes) {
-        this.maxMistakes = maxMistakes;
     }
 
     public void setMistakesCount(Integer mistakesCount) {
@@ -103,10 +107,6 @@ public class Statistics {
 
     public Integer getTimer() {
         return timer;
-    }
-
-    public String getMaxMistakes() {
-        return maxMistakes;
     }
 
     public Integer getMistakesCount() {

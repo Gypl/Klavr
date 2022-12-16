@@ -76,7 +76,7 @@
             <column name="MISTAKES_COUNT" type="INT">
                 <constraints nullable="false"/>
             </column>
-            <column name="MAX_MISTAKES" type="VARCHAR(255)">
+            <column name="MAX_MISTAKES" type="INT">
                 <constraints nullable="false"/>
             </column>
             <column name="TIMER" type="INT">

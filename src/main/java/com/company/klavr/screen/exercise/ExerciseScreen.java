@@ -1,9 +1,15 @@
 package com.company.klavr.screen.exercise;
 
+
+import java.util.Date;
 import com.company.klavr.entity.Exercise;
 import com.company.klavr.entity.Statistics;
+import com.company.klavr.entity.User;
 import com.company.klavr.logic.ExerciseHandler;
 import io.jmix.core.DataManager;
+import io.jmix.core.querycondition.PropertyCondition;
+import io.jmix.core.security.CurrentAuthentication;
+import io.jmix.core.usersubstitution.CurrentUserSubstitution;
 import io.jmix.ui.Actions;
 import io.jmix.ui.component.*;
 import io.jmix.ui.screen.*;
@@ -47,6 +53,8 @@ public class ExerciseScreen extends Screen {
 
     private UUID id;
     private Exercise exercise;
+    @Autowired
+    private CurrentAuthentication currentAuthentication;
 
     public void setExerciseId(UUID id) {
         this.id = id;
@@ -81,12 +89,20 @@ public class ExerciseScreen extends Screen {
 
     private void saveStatistics() {
         Statistics statistics = dataManager.create(Statistics.class);
-        /*statistics.setStatistics_to_exercise(dataManager.load);
-        statistics.setStatistics_to_user();
+        //statistics.setStatistics_to_exercise(dataManager.load);
+        User currentUser = dataManager.load(User.class)
+                .condition(PropertyCondition.contains("USERNAME", currentAuthentication.getUser().getUsername()))
+                .one();
 
-        statistics.setFinishDate();
-
-        dataManager.save(statistics);*/
+        statistics.setFinishDate(new Date());
+        statistics.setStatistics_to_exercise(exercise);
+        statistics.setStatistics_to_user(currentUser);
+        statistics.setExerciseLength(exercise.getLength());
+        statistics.setMistakesCount(exerciseHandler.getCurrentMistakes());
+        statistics.setMaxMistakes(exercise.getExercise_to_difficulty().getMistakesCount());
+        statistics.setTimer(timerValue);
+        statistics.setSpeed(exerciseHandler.getAverageSpeed());
+        dataManager.save(statistics);
     }
 
     private void showKeyPress(char clicked) {
@@ -146,6 +162,7 @@ public class ExerciseScreen extends Screen {
         }
         messageDialog.setMessage(getFinalMessage());
         messageDialog.show();
+        saveStatistics();
     }
 
     private void wrongSymbol() {

@@ -16,6 +16,30 @@
                 </query>
             </loader>
         </collection>
+        <instance id="exerciseDc" class="com.company.klavr.entity.Exercise">
+            <fetchPlan extends="_base"/>
+            <loader id="exerciseDl"/>
+        </instance>
+        <collection id="exercisesDc" class="com.company.klavr.entity.Exercise">
+            <fetchPlan extends="_base"/>
+            <loader id="exercisesDl">
+                <query>
+                    <![CDATA[select e from Exercise e]]>
+                </query>
+            </loader>
+        </collection>
+        <instance id="userDc" class="com.company.klavr.entity.User">
+            <fetchPlan extends="_base"/>
+            <loader id="userDl"/>
+        </instance>
+        <collection id="usersDc" class="com.company.klavr.entity.User">
+            <fetchPlan extends="_base"/>
+            <loader id="usersDl">
+                <query>
+                    <![CDATA[select e from User e]]>
+                </query>
+            </loader>
+        </collection>
     </data>
     <facets>
         <dataLoadCoordinator auto="true"/>
@@ -38,6 +62,12 @@
                 dataLoader="statisticsesDl">
             <properties include=".*"/>
         </filter>
+        <hbox spacing="true">
+            <entityComboBox id="exerciseComboBox" dataContainer="exerciseDc"
+                            description="msg://exerciseComboBox.description"/>
+            <entityComboBox id="userComboBox" dataContainer="userDc" description="msg://userComboBox.description"/>
+        </hbox>
+        <chart:serialChart/>
         <groupTable id="statisticsesTable"
                     width="100%"
                     dataContainer="statisticsesDc">
@@ -58,7 +88,6 @@
                           alwaysVisible="true">
             </buttonsPanel>
         </groupTable>
-        <chart:serialChart/>
         <hbox id="lookupActions" spacing="true" visible="false">
             <button action="lookupSelectAction"/>
             <button action="lookupCancelAction"/>
