@@ -30,7 +30,7 @@ public class ExerciseEdit extends StandardEditor<Exercise> {
             Difficulty curDiff = exercise_to_difficultyComboBox.getValue();
 
             List<Zone> zones = curDiff.getDifficult_to_zone();
-            String symbols = "[^\s";
+            String symbols = "[^\\s";
             for(Zone zone : zones){
                 symbols+=zone.getSymbols();
             }
