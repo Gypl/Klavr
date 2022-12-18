@@ -2,18 +2,25 @@ package com.company.klavr.screen.exercise;
 
 
 import com.company.klavr.entity.Exercise;
+import com.company.klavr.entity.Statistics;
+import com.company.klavr.entity.User;
 import com.company.klavr.logic.ExerciseHandler;
 import io.jmix.core.DataManager;
+import io.jmix.core.querycondition.PropertyCondition;
 import io.jmix.core.security.CurrentAuthentication;
 import io.jmix.ui.Notifications;
 import io.jmix.ui.component.*;
 import io.jmix.ui.screen.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.yaml.snakeyaml.events.Event;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
+import java.util.Date;
+import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 @UiController("ExerciseScreen")
@@ -106,14 +113,27 @@ public class ExerciseScreen extends Screen {
     }
 
     private void saveStatistics() {
-        /*Statistics statistics = dataManager.create(Statistics.class);
+        Statistics statistics = dataManager.create(Statistics.class);
         //statistics.setStatistics_to_exercise(dataManager.load);
         String userName = currentAuthentication.getUser().getUsername().toString();
         System.out.println(userName);
-        User currentUser = dataManager.load(User.class)
+
+        UUID result = null;
+        List<User> users = dataManager.load(User.class).all().list();
+        if (users.size() != 0) {
+            for (User user : users) {
+                if (Objects.equals(user.getUsername(), userName))
+                    result = user.getId();
+            }
+        }
+
+        User currentUser = dataManager.load(User.class).id(result).one();
+
+
+        /*User currentUser = dataManager.load(User.class)
                 .condition(PropertyCondition.contains("USERNAME", userName))
                 .one();
-
+        currentUser = dataManager.load(User.class).condition(PropertyCondition.contains("ID", result)).one();*/
         statistics.setFinishDate(new Date());
         statistics.setStatistics_to_exercise(exercise);
         statistics.setStatistics_to_user(currentUser);
@@ -122,7 +142,7 @@ public class ExerciseScreen extends Screen {
         statistics.setMaxMistakes(exercise.getExercise_to_difficulty().getMistakesCount());
         statistics.setTimer(timerValue);
         statistics.setSpeed(exerciseHandler.getAverageSpeed());
-        dataManager.save(statistics);*/
+        dataManager.save(statistics);
     }
 
     private void showKeyNeededToPress(char neededToPress) {
@@ -197,7 +217,6 @@ public class ExerciseScreen extends Screen {
 
         if (!canExecution)
             return;
-
         handleInput();
     }
 

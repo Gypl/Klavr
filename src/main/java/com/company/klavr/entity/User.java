@@ -3,6 +3,7 @@ package com.company.klavr.entity;
 import io.jmix.core.annotation.Secret;
 import io.jmix.core.entity.annotation.JmixGeneratedValue;
 import io.jmix.core.entity.annotation.SystemLevel;
+import io.jmix.core.metamodel.annotation.InstanceName;
 import io.jmix.core.metamodel.annotation.JmixEntity;
 import io.jmix.security.authentication.JmixUserDetails;
 import org.springframework.security.core.GrantedAuthority;
@@ -24,6 +25,7 @@ public class User implements JmixUserDetails {
     @JmixGeneratedValue
     private UUID id;
 
+    @InstanceName
     @Column(name = "USERNAME", nullable = false)
     protected String username;
 

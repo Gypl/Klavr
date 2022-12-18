@@ -51,8 +51,8 @@
             <column name="ID" value="e1e3c151-d1fc-4c42-8654-a9027e4e705e"/>
             <column name="NAME" value="УПРАЖНЕНИЕ 1"/>
             <column name="EXERCISE_TO_DIFFICULTY_ID" value="d1f1c1e1-d1fc-4c42-8654-a9027ee14083"/>
-            <column name="length" value="51"/>
-            <column name="TEXT" value="нтат нь кт ето арм км ьр трам мп гг та триом"/>
+            <column name="length" value="50"/>
+            <column name="TEXT" value="нтат нь кт ето арм км ьр трам мп гг та триом триом"/>
         </insert>
     </changeSet>
 
@@ -61,8 +61,8 @@
             <column name="ID" value="e2e3c252-d1fc-4c42-8654-a9027e4e705e"/>
             <column name="NAME" value="УПРАЖНЕНИЕ 2"/>
             <column name="EXERCISE_TO_DIFFICULTY_ID" value="d1f1c1e1-d1fc-4c42-8654-a9027ee14083"/>
-            <column name="length" value="55"/>
-            <column name="TEXT" value="аоао аа оо оппо онам ннее еенн тьть птко птко"/>
+            <column name="length" value="50"/>
+            <column name="TEXT" value="аоао аа оо оппо онам ннее еенн тьть птко птко ненн"/>
         </insert>
     </changeSet>
 </databaseChangeLog>
