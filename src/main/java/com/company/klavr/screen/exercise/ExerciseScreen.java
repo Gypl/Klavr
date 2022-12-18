@@ -202,7 +202,8 @@ public class ExerciseScreen extends Screen {
     }
 
     private void exerciseDone() {
-        System.out.println("Well done");
+        notifications.create(Notifications.NotificationType.TRAY)
+                .withCaption("Ура победа!").show();
         executionStop();
     }
 
@@ -234,7 +235,7 @@ public class ExerciseScreen extends Screen {
     }
 
     private String getResetMessage() {
-        return String.format("Предыдущая статистика удалена");
+        return String.format("Перезапущено");
     }
 
     @Subscribe("resetButton")
@@ -247,7 +248,8 @@ public class ExerciseScreen extends Screen {
         mistakesLabel.setValue(String.format(" %d/%d", exerciseHandler.getCurrentMistakes(), exerciseHandler.getMaxMistakes()));
         if (exerciseHandler.isMistakesFull()) {
             executionStop();
-            System.err.println("You lose!");
+            notifications.create(Notifications.NotificationType.TRAY)
+                    .withCaption("Вы слабое звено").show();
         }
     }
 
