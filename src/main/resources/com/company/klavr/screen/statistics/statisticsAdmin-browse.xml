@@ -16,10 +16,14 @@
                 </query>
             </loader>
         </collection>
-        <!--<instance id="exerciseDc" class="com.company.klavr.entity.Exercise">
+        <collection id="statisticsesAdminDc" class="com.company.klavr.entity.Statistics">
             <fetchPlan extends="_base"/>
-            <loader id="exerciseDl"/>
-        </instance>
+            <loader id="statisticsesAdminDl">
+                <query>
+                    <![CDATA[select e from Statistics_ e order by e.finishDate]]>
+                </query>
+            </loader>
+        </collection>
         <collection id="exercisesDc" class="com.company.klavr.entity.Exercise">
             <fetchPlan extends="_base"/>
             <loader id="exercisesDl">
@@ -28,10 +32,6 @@
                 </query>
             </loader>
         </collection>
-        <instance id="userDc" class="com.company.klavr.entity.User">
-            <fetchPlan extends="_base"/>
-            <loader id="userDl"/>
-        </instance>
         <collection id="usersDc" class="com.company.klavr.entity.User">
             <fetchPlan extends="_base"/>
             <loader id="usersDl">
@@ -39,7 +39,8 @@
                     <![CDATA[select e from User e]]>
                 </query>
             </loader>
-        </collection>-->
+        </collection>
+
     </data>
     <facets>
         <dataLoadCoordinator auto="true"/>
@@ -62,12 +63,34 @@
                 dataLoader="statisticsesDl">
             <properties include=".*"/>
         </filter>
-        <!--<hbox spacing="true">
-            <entityComboBox id="exerciseComboBox" dataContainer="exerciseDc"
-                            description="msg://exerciseComboBox.description"/>
-            <entityComboBox id="userComboBox" dataContainer="userDc" description="msg://userComboBox.description"/>
-        </hbox>-->
-        <chart:serialChart/>
+        <hbox spacing="true">
+            <entityComboBox id="exerciseComboBox"
+                            description="msg://exerciseComboBox.description"
+                            optionsContainer="exercisesDc"/>
+            <entityComboBox id="userComboBox"
+                            description="msg://userComboBox.description"
+                            optionsContainer="usersDc"/>
+        </hbox>
+        <chart:serialChart dataContainer="statisticsesAdminDc"
+                           categoryField="finishDate">
+            <chart:graphs>
+                <chart:graph id="g1"
+                             bullet="ROUND"
+                             bulletBorderAlpha="1"
+                             bulletColor="WHITE"
+                             bulletSize="5"
+                             hideBulletsCount="50"
+                             lineThickness="2"
+                             title="Red line"
+                             useLineColorForBulletBorder="true"
+                             valueField="timer"
+                             balloonText="&lt;span style='font-size:18px;'&gt;[[value]]&lt;/span&gt;">
+                    <chart:balloon adjustBorderColor="false"
+                                   color="WHITE"
+                                   drop="true"/>
+                </chart:graph>
+            </chart:graphs>
+        </chart:serialChart>
         <groupTable id="statisticsesTable"
                     width="100%"
                     dataContainer="statisticsesDc">
