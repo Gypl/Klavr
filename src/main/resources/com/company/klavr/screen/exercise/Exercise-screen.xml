@@ -25,56 +25,53 @@
             <label
                     value="&#1042;&#1074;&#1086;&#1076;&#1080;&#1090;&#1077; &#1091;&#1082;&#1072;&#1079;&#1072;&#1085;&#1085;&#1099;&#1077; &#1089;&#1080;&#1084;&#1074;&#1086;&#1083;&#1099;:"/>
 
-            <cssLayout
-                    css="border: 7px solid #99b4d1;
-    border-radius: 14px;
-    box-shadow: 1px 1px 8px 0 rgb(0 0 0 / 20%);
-    font: normal 56px/70px Courier New,Fallback Courier New,monospace,serif;
-    height: 82px;
-    letter-spacing: 0;
-    margin: 0 auto;
-    overflow: hidden;
-    vertical-align: middle;
-    width: 90%;
+            <cssLayout css="display: block">
+                <cssLayout
+                            css="border: 7px solid #99b4d1;
+                    border-radius: 14px;
+                    box-shadow: 1px 1px 8px 0 rgb(0 0 0 / 20%);
+                    font: normal 46px/50px Courier New,Fallback Courier New,monospace,serif;
+                    vertical-align: middle;
+                    width: 90%;
 
-"
-            >
-                <label id="writtenText"
-                       css="
-                       display: inline-block;
-    float: left;
-    height: 100%;
-    overflow: hidden;
-    text-overflow: clip;
-    white-space: pre;
-    width: 50%;
+                    display: flex;
+                    margin: 20px;
+                    justify-content: center;
+                    overflow: hidden;
 
-    background: #e3e6e9;
-    border-bottom-left-radius: 5px;
-    border-top-left-radius: 5px;
-    color: #cbc9cd;
-    text-align: right;
+                    white-space: nowrap
+                    "
+                    >
+                        <label id="writtenText"
+                               css="
+                       font: normal 46px/50px Courier New,Fallback Courier New,monospace,serif;
+                       background: #e3e6e9;
+                       color: #cbc9cd;
+                       text-align: right;
+                       border-bottom-left-radius: 5px;
+                       border-top-left-radius: 5px;
 
+                       overflow: hidden;
+                       flex-basis: 50%;
 
-"
-                       value=""/>
-                <label id="text"
-                       css="
-                       display: inline-block;
-    float: left;
-    height: 100%;
-    overflow: hidden;
-    text-overflow: clip;
-    white-space: pre;
-    width: 50%;
+                       text-overflow: clip;
 
-        background: #fff;
-    border-bottom-right-radius: 5px;
-    border-top-right-radius: 5px;
-    color: #333;
-    text-align: left;
-"
-                       value=""/>
+                    " value=""/>
+
+                        <label id="text"
+                               css="
+                        font: normal 46px/50px Courier New,Fallback Courier New,monospace,serif;
+                        background: #fff;
+                        color: #333;
+                        border-bottom-right-radius: 5px;
+                        border-top-right-radius: 5px;
+
+                        overflow: hidden;
+                        flex-basis: 50%;
+
+        "
+                               value=""/>
+                </cssLayout>
             </cssLayout>
 
             <!--Конпки-->
@@ -262,7 +259,7 @@
                 </cssLayout>
 
                 <cssLayout css="display: flex; flex-direction: row; flex-wrap: nowrap; column-gap: 4px; justify-content: center;">
-                    <button caption=" " css="
+                    <button caption=" " id="buttonSpace" css="
                         height: 40px;
                         width: 240px;
                         padding: 0;
@@ -270,9 +267,15 @@
                 </cssLayout>
             </cssLayout>
 
-            <button primary="true" id="completeButton" css="margin: 20px auto 0 auto; display: table;"
-                    caption="&#1047;&#1072;&#1074;&#1077;&#1088;&#1096;&#1080;&#1090;&#1100; &#1091;&#1087;&#1088;&#1072;&#1078;&#1085;&#1077;&#1085;&#1080;&#1077;"/>
+            <cssLayout css="margin: 20px auto 0 auto; display: table;">
+                <button id="resetButton" css="margin: 0 40px 0 auto;" caption="&#1055;&#1086;&#1074;&#1090;&#1086;&#1088;&#1080;&#1090;&#1100; &#1091;&#1087;&#1088;&#1072;&#1078;&#1085;&#1077;&#1085;&#1080;&#1077;"
+                        />
+                <button primary="true" id="completeButton" caption="&#1047;&#1072;&#1074;&#1077;&#1088;&#1096;&#1080;&#1090;&#1100; &#1091;&#1087;&#1088;&#1072;&#1078;&#1085;&#1077;&#1085;&#1080;&#1077;"/>
+            </cssLayout>
 
+            <!--<button primary="true" id="completeButton" css="margin: 20px auto 0 auto; display: table;"
+                    caption="&#1047;&#1072;&#1074;&#1077;&#1088;&#1096;&#1080;&#1090;&#1100; &#1091;&#1087;&#1088;&#1072;&#1078;&#1085;&#1077;&#1085;&#1080;&#1077;"/>
+-->
         </cssLayout>
 
         <textField textChangeEventMode="EAGER" align="BOTTOM_RIGHT" id="anton" tabIndex="55"

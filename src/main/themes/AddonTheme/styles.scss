@@ -1,0 +1,8 @@
+@import "AddonTheme-defaults";
+@import "addons";
+@import "AddonTheme";
+
+.AddonTheme {
+  @include addons;
+  @include AddonTheme;
+}

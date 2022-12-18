@@ -1,16 +1,10 @@
 package com.company.klavr.screen.exercise;
 
 
-import java.util.Date;
 import com.company.klavr.entity.Exercise;
-import com.company.klavr.entity.Statistics;
-import com.company.klavr.entity.User;
 import com.company.klavr.logic.ExerciseHandler;
 import io.jmix.core.DataManager;
-import io.jmix.core.querycondition.PropertyCondition;
 import io.jmix.core.security.CurrentAuthentication;
-import io.jmix.core.usersubstitution.CurrentUserSubstitution;
-import io.jmix.ui.Actions;
 import io.jmix.ui.component.*;
 import io.jmix.ui.screen.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,18 +54,27 @@ public class ExerciseScreen extends Screen {
         this.id = id;
     }
 
-    @Subscribe
-    public void onAfterShow(AfterShowEvent event) {
+    private void initData() {
         needed = exercise.getText();
-        exerciseHandler = new ExerciseHandler(needed.length(), 10);
+        exerciseHandler = new ExerciseHandler(needed.length(), exercise.getExercise_to_difficulty().getMistakesCount());
+
+        written = "";
+        writtenText.setValue("");
 
         needed = needed.replaceAll(" ", "\u00A0");
         text.setValue(needed);
+        showKeyNeededToPress(needed.charAt(0));
+
         timeLabel.setValue(String.format(" %d сек", 0));
         lengthLabel.setValue(String.format(" 0/%d", exerciseHandler.getMaxLength()));
         mistakesLabel.setValue(String.format(" 0/%d", exerciseHandler.getMaxMistakes()));
 
         keyboardBox.setVisible(keyboardCheckBox.isChecked());
+    }
+
+    @Subscribe
+    public void onAfterShow(AfterShowEvent event) {
+        initData();
     }
 
     public void setExercise(Exercise exercise) {
@@ -83,7 +86,6 @@ public class ExerciseScreen extends Screen {
 
     @Subscribe
     public void onInit(InitEvent event) {
-
     }
 
     private void saveStatistics() {
@@ -106,18 +108,35 @@ public class ExerciseScreen extends Screen {
         dataManager.save(statistics);*/
     }
 
-    private void showKeyPress(char clicked) {
+    private void showKeyNeededToPress(char neededToPress) {
         keyboardBox.getComponents().forEach(
             component -> {
                 if(component.toString().contains("Button")) {
                     Button button = (Button) component;
-                    if (button.getCaption().trim().equals((clicked+"").toUpperCase())) {
-                        System.out.println(clicked);
-                    }
+                    this.setButtonDefaultStyle(button);
 
+                    if (button.getCaption().trim().equals((neededToPress+"").toUpperCase())) {
+                        makeButtonReadyToPress(button);
+                    }
                 }
             }
         );
+    }
+
+    private void setButtonDefaultStyle(Button button) {
+        if (button.getId() != null) {
+            if (button.getId().equals("buttonSpace")) {
+                button.addStyleName("button-default-space");
+            }
+        }
+        else {
+            button.addStyleName("button-default");
+        }
+        button.removeStyleName("jmix-primary-action");
+    }
+
+    private void makeButtonReadyToPress(Button button) {
+        button.addStyleName("jmix-primary-action");
     }
 
     @Subscribe("keyboardCheckBox")
@@ -161,9 +180,31 @@ public class ExerciseScreen extends Screen {
         if (timerValue != 0) {
             exerciseHandler.setAverageSpeed(Math.round(exerciseHandler.getCurrentLength()/timerValue));
         }
-        messageDialog.setMessage(getFinalMessage());
+        if (exerciseHandler.getCurrentLength() != 0) {
+            messageDialog.setMessage(getFinalMessage());
+            messageDialog.show();
+            //saveStatistics();
+        }
+    }
+
+    private void reset() {
+        timer.stop();
+        timerValue = 0;
+        isTimer = false;
+        canExecution = true;
+        initData();
+
+        messageDialog.setMessage(getResetMessage());
         messageDialog.show();
-        //saveStatistics();
+    }
+
+    private String getResetMessage() {
+        return String.format("Предыдущая статистика удалена");
+    }
+
+    @Subscribe("resetButton")
+    public void onResetButtonClick(Button.ClickEvent event) {
+        reset();
     }
 
     private void wrongSymbol() {
@@ -177,14 +218,15 @@ public class ExerciseScreen extends Screen {
 
     private void handleInput() {
         char inputSymbol = anton.getRawValue().charAt(0) == ' ' ? '\u00A0' : anton.getRawValue().charAt(0);
-        showKeyPress(inputSymbol);
         anton.setValue("");
         if (correctSymbol(inputSymbol)) {
             updateUserInput();
             if (needed == "") {
                 exerciseDone();
+                showKeyNeededToPress('N');
                 return;
             }
+            showKeyNeededToPress(needed.charAt(0));
         }
         else {
             wrongSymbol();
