@@ -3,6 +3,7 @@
         caption="msg://exerciseScreen.caption">
     <facets>
         <timer id="timer" delay="1000" repeating="true"/>
+        <timer id="watchDog" delay="100" repeating="true"/>
         <messageDialog id="messageDialog" modal="true"/>
     </facets>
     <layout>
@@ -72,6 +73,8 @@
         "
                                value=""/>
                 </cssLayout>
+                <label css="display: block" value="msg://label.value"/>
+                <progressBar id="progressBar" responsive="true"/>
             </cssLayout>
 
             <!--Конпки-->

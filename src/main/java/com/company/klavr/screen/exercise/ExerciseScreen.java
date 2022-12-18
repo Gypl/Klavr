@@ -5,10 +5,15 @@ import com.company.klavr.entity.Exercise;
 import com.company.klavr.logic.ExerciseHandler;
 import io.jmix.core.DataManager;
 import io.jmix.core.security.CurrentAuthentication;
+import io.jmix.ui.Notifications;
 import io.jmix.ui.component.*;
 import io.jmix.ui.screen.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.math.BigDecimal;
+import java.math.MathContext;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.UUID;
 
 @UiController("ExerciseScreen")
@@ -21,6 +26,8 @@ public class ExerciseScreen extends Screen {
     private boolean isTimer = false;
     private ExerciseHandler exerciseHandler;
     private boolean canExecution = true;
+    private double watchDogValue;
+    private int keyPressTime;
     @Autowired
     private Label writtenText;
     @Autowired
@@ -44,11 +51,17 @@ public class ExerciseScreen extends Screen {
     private Label timeLabel;
     @Autowired
     private MessageDialogFacet messageDialog;
+    @Autowired
+    private Notifications notifications;
 
     private UUID id;
     private Exercise exercise;
     @Autowired
     private CurrentAuthentication currentAuthentication;
+    @Autowired
+    private Timer watchDog;
+    @Autowired
+    private ProgressBar progressBar;
 
     public void setExerciseId(UUID id) {
         this.id = id;
@@ -68,8 +81,12 @@ public class ExerciseScreen extends Screen {
         timeLabel.setValue(String.format(" %d сек", 0));
         lengthLabel.setValue(String.format(" 0/%d", exerciseHandler.getMaxLength()));
         mistakesLabel.setValue(String.format(" 0/%d", exerciseHandler.getMaxMistakes()));
+        keyPressTime = exercise.getExercise_to_difficulty().getPressTime();
 
         keyboardBox.setVisible(keyboardCheckBox.isChecked());
+
+        watchDogValue = keyPressTime;
+        progressBar.setValue(0d);
     }
 
     @Subscribe
@@ -139,6 +156,21 @@ public class ExerciseScreen extends Screen {
         button.addStyleName("jmix-primary-action");
     }
 
+    @Subscribe("watchDog")
+    public void onWatchDogTimerAction(Timer.TimerActionEvent event) {
+        watchDogValue -= 0.1d;
+
+        progressBar.setValue((keyPressTime - watchDogValue)/keyPressTime);
+
+        if (Math.round(watchDogValue*10) == 0) {
+            wrongSymbol();
+            watchDogValue = exercise.getExercise_to_difficulty().getPressTime();
+
+            notifications.create(Notifications.NotificationType.TRAY)
+                    .withCaption("Время нажатия истекло").show();
+        }
+    }
+
     @Subscribe("keyboardCheckBox")
     public void onKeyboardCheckBoxValueChange(HasValue.ValueChangeEvent<Boolean> event) {
         keyboardBox.setVisible(event.getValue());
@@ -158,6 +190,7 @@ public class ExerciseScreen extends Screen {
             return;
         }
         if (!isTimer) {
+            watchDog.start();
             timer.start();
             this.isTimer = true;
         }
@@ -174,6 +207,7 @@ public class ExerciseScreen extends Screen {
     }
 
     private void executionStop() {
+        watchDog.stop();
         timer.stop();
         canExecution = false;
         isTimer = true;
@@ -183,12 +217,13 @@ public class ExerciseScreen extends Screen {
         if (exerciseHandler.getCurrentLength() != 0) {
             messageDialog.setMessage(getFinalMessage());
             messageDialog.show();
-            //saveStatistics();
+            saveStatistics();
         }
     }
 
     private void reset() {
         timer.stop();
+        watchDog.stop();
         timerValue = 0;
         isTimer = false;
         canExecution = true;
@@ -220,6 +255,7 @@ public class ExerciseScreen extends Screen {
         char inputSymbol = anton.getRawValue().charAt(0) == ' ' ? '\u00A0' : anton.getRawValue().charAt(0);
         anton.setValue("");
         if (correctSymbol(inputSymbol)) {
+            watchDogValue = keyPressTime;
             updateUserInput();
             if (needed == "") {
                 exerciseDone();
@@ -234,6 +270,9 @@ public class ExerciseScreen extends Screen {
     }
 
     private void updateUserInput() {
+        if (written.length() > 13) {
+            written = written.substring(1, written.length());
+        }
         if (needed != "") {
             char changed = needed.charAt(0);
             needed = getText(needed);
