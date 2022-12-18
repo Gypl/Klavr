@@ -48,14 +48,12 @@
             </column>
         </form>
 
-        <hbox id="dropZone" spacing="true" width="600">
+        <hbox spacing="true" width="600">
             <textArea id="textField" property="text" required="true" dataContainer="exerciseDc" rowspan="10"
                       height="300px" width="AUTO" trim="false"/>
             <vbox spacing="true">
-                <button id="generateText" align="TOP_RIGHT"/>
-                <fileUpload id="loadFile" align="TOP_RIGHT"
-                            dropZone="dropZone"
-                            uploadButtonDescription="&#1047;&#1072;&#1075;&#1088;&#1091;&#1079;&#1080;&#1090;&#1100; &#1092;&#1072;&#1081;&#1083;"
+                <button id="generateText" align="TOP_RIGHT" caption="msg://generateText.caption"/>
+                <fileUpload id="loadFile" align="TOP_RIGHT"/>
                 />
             </vbox>
         </hbox>
