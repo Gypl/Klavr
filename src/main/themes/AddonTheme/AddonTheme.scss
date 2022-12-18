@@ -1,0 +1,7 @@
+@import "../helium/helium";
+@import "addons";
+
+@mixin AddonTheme {
+  @include helium;
+  @include addons;
+}
