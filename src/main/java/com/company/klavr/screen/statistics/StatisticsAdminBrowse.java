@@ -2,10 +2,9 @@ package com.company.klavr.screen.statistics;
 
 import com.company.klavr.entity.Exercise;
 import com.company.klavr.entity.User;
-import io.jmix.charts.component.Chart;
+import com.company.klavr.entity.UserProgress;
 import io.jmix.charts.component.SerialChart;
 import io.jmix.core.DataManager;
-import io.jmix.core.Sort;
 import io.jmix.ui.component.EntityComboBox;
 import io.jmix.ui.component.HasValue;
 import io.jmix.ui.model.CollectionContainer;
@@ -20,7 +19,7 @@ import java.util.*;
 @LookupComponent("statisticsesTable")
 public class StatisticsAdminBrowse extends StandardLookup<Statistics> {
     @Autowired
-    private CollectionContainer<Statistics> statisticsesAdminDc;
+    private CollectionContainer<UserProgress> statisticsesAdminDc;
     @Autowired
     private DataManager dataManager;
     @Autowired
@@ -32,44 +31,82 @@ public class StatisticsAdminBrowse extends StandardLookup<Statistics> {
 
     @Subscribe("userComboBox")
     public void onUserComboBoxValueChange(HasValue.ValueChangeEvent<User> event) {
-        System.out.println(userComboBox.getValue().toString());
-        //Считаем среднее за упражнения у пользователя. Работает, но засунуть в график не можем
-        List<Integer> results = new ArrayList<>();
+        if (userComboBox.getValue() == null) return;
+        exerciseComboBox.setValue(null);
+        Collection<UserProgress> userProgressList = new ArrayList<>();
+        Map<UUID, Integer> userStates = new HashMap<>();
+        Map<UUID, Integer> userCounter = new HashMap<>();
+
+        //Считаем среднее за упражнения у пользователя.
         List<User> userList = dataManager.load(User.class).all().list();
         List<Statistics> statisticsList = dataManager.load(Statistics.class).all().list();
         if (statisticsList.size() != 0 && userList.size() != 0) {
-            //for (User user : userList) {
-                int result = 0;
-                int counter = 0;
-                for (Statistics stat : statisticsList) {
-                    if (Objects.equals(stat.getStatistics_to_user().getUsername(), userComboBox.getValue().getUsername())) {
-                        result += stat.getTimer();
-                        counter += 1;
+            int result = 0;
+            int counter = 0;
+            for (Statistics stat : statisticsList) {
+                if (Objects.equals(stat.getStatistics_to_user().getUsername(), userComboBox.getValue().getUsername())) {
+                    UUID currentID = stat.getStatistics_to_exercise().getId();
+                    if (userStates.containsKey(currentID)) {
+                        userStates.put(currentID, userStates.get(currentID) + stat.getTimer());
+                        userCounter.put(currentID, userCounter.get(currentID) + 1);
+                    } else {
+                        userStates.put(currentID, stat.getTimer());
+                        userCounter.put(currentID, 1);
                     }
                 }
-                result = result / counter;
-                results.add(result);
-            //}
+            }
+
+            for (UUID uuid : userStates.keySet()){
+                int temp = userStates.get(uuid) / userCounter.get(uuid);
+                UserProgress up = new UserProgress(dataManager.load(Exercise.class).id(uuid).one().getName(), temp);
+                userProgressList.add(up);
+            }
         }
         //Меняем параметры графика
-        adminSerialChart.setCategoryField("statistics_to_user");
+        adminSerialChart.setCategoryField("exercise");
         userComboBox.getValue();
 
-        Collection<Statistics> statisticsCollection = dataManager.load(Statistics.class).query(
-                "select e from Statistics_ e where e.statistics_to_user = ?1 order by e.finishDate ", userComboBox.getValue()).sort(Sort.by("finishDate")).list();
-
-        //dataManager возвращает только сущности
-        /*statisticsCollection = dataManager.load(Statistics.class).query(
-                "SELECT avg (e.timer) from Statistics_ e where e.statistics_to_exercise = ?1", exerciseComboBox.getValue()).list();*/
-        statisticsesAdminDc.setItems(statisticsCollection);
+        statisticsesAdminDc.setItems(userProgressList);
     }
 
     @Subscribe("exerciseComboBox")
     public void onExerciseComboBoxValueChange(HasValue.ValueChangeEvent<Exercise> event) {
+        if (exerciseComboBox.getValue() == null) return;
+        userComboBox.setValue(null);
+        Collection<UserProgress> userProgressList = new ArrayList<>();
+        Map<UUID, Integer> userStates = new HashMap<>();
+        Map<UUID, Integer> userCounter = new HashMap<>();
+
+        //Считаем среднее за пользователя у упражнения.
+        List<Exercise> exercisesList = dataManager.load(Exercise.class).all().list();
+        List<Statistics> statisticsList = dataManager.load(Statistics.class).all().list();
+        if (statisticsList.size() != 0 && exercisesList.size() != 0) {
+            int result = 0;
+            int counter = 0;
+            for (Statistics stat : statisticsList) {
+                if (Objects.equals(stat.getStatistics_to_exercise().getName(), exerciseComboBox.getValue().getName())) {
+                    UUID currentID = stat.getStatistics_to_user().getId();
+                    if (userStates.containsKey(currentID)) {
+                        userStates.put(currentID, userStates.get(currentID) + stat.getTimer());
+                        userCounter.put(currentID, userCounter.get(currentID) + 1);
+                    } else {
+                        userStates.put(currentID, stat.getTimer());
+                        userCounter.put(currentID, 1);
+                    }
+                }
+            }
+
+            for (UUID uuid : userStates.keySet()){
+                int temp = userStates.get(uuid) / userCounter.get(uuid);
+                UserProgress up = new UserProgress(dataManager.load(User.class).id(uuid).one().getUsername(), temp);
+                userProgressList.add(up);
+            }
+        }
+        //Меняем параметры графика
+        adminSerialChart.setCategoryField("exercise");
         exerciseComboBox.getValue();
-        Collection<Statistics> statisticsCollection = dataManager.load(Statistics.class).query(
-                "select e from Statistics_ e where e.statistics_to_exercise = ?1 order by e.finishDate ", exerciseComboBox.getValue()).sort(Sort.by("finishDate")).list();
-        statisticsesAdminDc.setItems(statisticsCollection);
+
+        statisticsesAdminDc.setItems(userProgressList);
     }
 
 }
