@@ -167,7 +167,7 @@ public class ExerciseScreen extends Screen {
             }
         }
         else {
-            button.addStyleName("button-default");
+            button.addStyleName("button-default-space");
         }
         button.removeStyleName("jmix-primary-action");
     }
