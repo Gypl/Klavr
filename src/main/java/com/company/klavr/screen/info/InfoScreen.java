@@ -2,6 +2,7 @@ package com.company.klavr.screen.info;
 
 import io.jmix.ui.Notifications;
 import io.jmix.ui.component.Button;
+import io.jmix.ui.component.MessageDialogFacet;
 import io.jmix.ui.screen.Screen;
 import io.jmix.ui.screen.Subscribe;
 import io.jmix.ui.screen.UiController;
@@ -12,10 +13,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 @UiDescriptor("Info-screen.xml")
 public class InfoScreen extends Screen {
     @Autowired
-    private Notifications notifications;
+    private MessageDialogFacet messageDialog;
+
     @Subscribe("creatorsButton")
     public void onCreatorsButtonClick(Button.ClickEvent event) {
-        notifications.create(Notifications.NotificationType.TRAY)
-                .withCaption("Андрей, Мишаня, Даня, Фапах").show();
+        messageDialog.setCaption("Создатели приложения");
+        messageDialog.setMessage(getCreators());
+        messageDialog.show();
+    }
+
+    private String getCreators() {
+        return String.format("Студенты замечательной группы 6402: \n") +
+                String.format("Лавлов А.Ю.\n") +
+                String.format("Денисов М.Н.\n") +
+                String.format("Косарев Д.С.\n");
     }
 }
