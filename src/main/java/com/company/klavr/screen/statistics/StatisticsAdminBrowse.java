@@ -126,12 +126,6 @@ public class StatisticsAdminBrowse extends StandardLookup<Statistics> {
     public void onExerciseComboBoxValueChange(HasValue.ValueChangeEvent<Exercise> event) {
 
         exerciseComboBox.getValue();
-        /*
-        adminSerialChart.setCategoryField("finishDate");
-        Collection<Statistics> statisticsCollection = dataManager.load(Statistics.class).query(
-                "select e from Statistics_ e where e.statistics_to_exercise = ?1 order by e.finishDate ", exerciseComboBox.getValue()).sort(Sort.by("finishDate")).list();
-        statisticsesAdminDc.setItems(statisticsesAdminDc);
-        */
 
         if (exerciseComboBox.getValue() == null) return;
         userComboBox.setValue(null);

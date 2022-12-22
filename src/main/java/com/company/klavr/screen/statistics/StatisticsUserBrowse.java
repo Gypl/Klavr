@@ -54,26 +54,10 @@ public class StatisticsUserBrowse extends StandardLookup<Statistics> {
                     }
                 }
             }
-            /*statisticsList = statisticsList.stream().filter(
-                    stat -> Objects.equals(stat.getStatistics_to_user().getUsername(),
-                            currentAuthentication.getUser().getUsername())
-            ).collect(Collectors.toList());*/
             adminSerialChart.setCategoryField("exercise");
             statisticsesUserDc.setItems(userProgressList);
             return;
         }
-
-        /*UUID result = null;
-        String userName = currentAuthentication.getUser().getUsername().toString();
-        List<User> users = dataManager.load(User.class).all().list();
-        if (users.size() != 0) {
-            for (User user : users) {
-                if (Objects.equals(user.getUsername(), userName))
-                    result = user.getId();
-            }
-        }
-
-        User currentUser = dataManager.load(User.class).id(result).one();*/
 
         Collection<UserProgress> userProgressList = new ArrayList<>();
         Map<UUID, Integer> userStates = new HashMap<>();
