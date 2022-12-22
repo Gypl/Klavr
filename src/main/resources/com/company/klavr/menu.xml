@@ -10,6 +10,7 @@
         <item screen="ExerciseScreen" caption="msg://com.company.klavr.screen.exercise/exerciseScreen.caption"
               icon="GRADUATION_CAP"/>
         <item screen="RegisterScreen" caption="msg://com.company.klavr.screen.register/registerScreen.caption"/>
+        <item screen="InfoScreen" caption="msg://com.company.klavr.screen.info/infoScreen.caption"/>
     </menu>
     <menu id="administrate" caption="msg://com.company.klavr/menu_config.Administrate" insertBefore="administration"
           expanded="true">

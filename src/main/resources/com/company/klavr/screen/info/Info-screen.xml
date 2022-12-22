@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://jmix.io/schema/ui/window"
+        caption="msg://infoScreen.caption">
+    <facets>
+        <notification id="notification"/>
+    </facets>
+    <layout>
+        <vbox spacing="true">
+            <htmlBox>
+                <templateContents><![CDATA[<h1>Fapah реально так зовут</h1>]]></templateContents>
+            </htmlBox>
+            <button id="creatorsButton" caption="msg://creatorsButton.caption" align="TOP_CENTER"/>
+        </vbox>
+    </layout>
+</window>
