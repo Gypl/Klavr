@@ -27,10 +27,8 @@ public class StatisticsAdminBrowse extends StandardLookup<Statistics> {
     private EntityComboBox<User> userComboBox;
     @Autowired
     private EntityComboBox<Exercise> exerciseComboBox;
-    /*@Autowired
-    private SerialChart serialChart;
     @Autowired
-    private Chart chart;*/
+    private SerialChart adminSerialChart;
 
     @Subscribe("userComboBox")
     public void onUserComboBoxValueChange(HasValue.ValueChangeEvent<User> event) {
@@ -54,7 +52,7 @@ public class StatisticsAdminBrowse extends StandardLookup<Statistics> {
             //}
         }
         //Пытался менять параметры графика, не работает Autowire
-        //serialChart.setCategoryField("statistics_to_user");
+        adminSerialChart.setCategoryField("statistics_to_user");
         userComboBox.getValue();
 
         Collection<Statistics> statisticsCollection = dataManager.load(Statistics.class).query(

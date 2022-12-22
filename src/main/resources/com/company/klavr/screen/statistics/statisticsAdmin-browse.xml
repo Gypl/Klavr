@@ -40,6 +40,13 @@
                 </query>
             </loader>
         </collection>
+        <keyValueCollection id="avgUser">
+            <loader>
+                <query>
+                    <![CDATA[SELECT avg (e.timer) from Statistics_ e]]>
+                </query>
+            </loader>
+        </keyValueCollection>
 
     </data>
     <facets>
@@ -72,7 +79,7 @@
                             optionsContainer="usersDc"/>
         </hbox>
         <chart:serialChart dataContainer="statisticsesAdminDc"
-                           categoryField="finishDate">
+                           categoryField="finishDate" id="adminSerialChart">
             <chart:graphs>
                 <chart:graph id="g1"
                              bullet="ROUND"

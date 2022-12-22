@@ -31,11 +31,11 @@
                 <passwordField id="passwordField"
                                caption="msg://com.company.klavr.entity/User.password"
                                required="true"
-                               visible="false"/>
+                               visible="false" maxLength="20"/>
                 <passwordField id="confirmPasswordField"
                                caption="msg://confirmPassword"
                                required="true"
-                               visible="false"/>
+                               visible="false" maxLength="20"/>
                 <checkBox id="activeField" property="active"/>
             </column>
         </form>
