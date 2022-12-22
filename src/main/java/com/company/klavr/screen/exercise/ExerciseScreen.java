@@ -116,7 +116,6 @@ public class ExerciseScreen extends Screen {
         Statistics statistics = dataManager.create(Statistics.class);
         //statistics.setStatistics_to_exercise(dataManager.load);
         String userName = currentAuthentication.getUser().getUsername().toString();
-        System.out.println(userName);
 
         UUID result = null;
         List<User> users = dataManager.load(User.class).all().list();
@@ -214,7 +213,6 @@ public class ExerciseScreen extends Screen {
             timer.start();
             this.isTimer = true;
         }
-
         if (!canExecution)
             return;
         handleInput();

@@ -1,12 +1,4 @@
 @mixin addons {
-  .v-button {
-    border-color: var(--button-default-color);
-    background: var(--button-default-color);
-    color: var(--button-default-text-color);
-    height: 40px !important;
-    width: 40px !important;
-    padding: 0;
-  }
   .button-default {
     border-color: var(--button-default-color);
     background: var(--button-default-color);
