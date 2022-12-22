@@ -203,10 +203,10 @@ public class ExerciseScreen extends Screen {
 
     @Subscribe("anton")
     public void onAntonValueChange(HasValue.ValueChangeEvent event) {
-        if(anton.getRawValue() == "") {
+        if(anton.getRawValue().equals("")) {
             return;
         }
-        if (needed == "") {
+        if (Objects.equals(needed, "")) {
             return;
         }
         if (!isTimer) {
@@ -278,7 +278,7 @@ public class ExerciseScreen extends Screen {
         if (correctSymbol(inputSymbol)) {
             watchDogValue = keyPressTime;
             updateUserInput();
-            if (needed == "") {
+            if (needed.isEmpty()) {
                 exerciseDone();
                 showKeyNeededToPress('N');
                 return;
