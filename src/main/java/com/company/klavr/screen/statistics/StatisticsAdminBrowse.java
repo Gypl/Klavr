@@ -51,7 +51,7 @@ public class StatisticsAdminBrowse extends StandardLookup<Statistics> {
                 results.add(result);
             //}
         }
-        //Пытался менять параметры графика, не работает Autowire
+        //Меняем параметры графика
         adminSerialChart.setCategoryField("statistics_to_user");
         userComboBox.getValue();
 
