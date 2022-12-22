@@ -20,8 +20,8 @@ public interface UserRole extends UiMinimalRole {
     @EntityPolicy(entityClass = Exercise.class, actions = EntityPolicyAction.READ)
     void exercise();
 
-    @MenuPolicy(menuIds = {"ExerciseUser.browse", "Statistics_User.browse"})
-    @ScreenPolicy(screenIds = {"ExerciseScreen", "ExerciseUser.browse", "Statistics_User.browse"})
+    @MenuPolicy(menuIds = {"ExerciseUser.browse", "Statistics_User.browse", "InfoScreen"})
+    @ScreenPolicy(screenIds = {"ExerciseScreen", "ExerciseUser.browse", "Statistics_User.browse", "InfoScreen"})
     void screens();
 
     @EntityAttributePolicy(entityClass = Difficulty.class, attributes = "*", action = EntityAttributePolicyAction.VIEW)
@@ -35,4 +35,8 @@ public interface UserRole extends UiMinimalRole {
     @EntityAttributePolicy(entityClass = Zone.class, attributes = "*", action = EntityAttributePolicyAction.VIEW)
     @EntityPolicy(entityClass = Zone.class, actions = EntityPolicyAction.READ)
     void zone();
+
+    @EntityAttributePolicy(entityClass = UserProgress.class, attributes = "*", action = EntityAttributePolicyAction.VIEW)
+    @EntityPolicy(entityClass = UserProgress.class, actions = {EntityPolicyAction.READ, EntityPolicyAction.CREATE})
+    void userProgress();
 }

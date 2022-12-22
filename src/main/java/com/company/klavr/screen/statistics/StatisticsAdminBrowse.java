@@ -5,19 +5,30 @@ import com.company.klavr.entity.User;
 import com.company.klavr.entity.UserProgress;
 import io.jmix.charts.component.SerialChart;
 import io.jmix.core.DataManager;
+import io.jmix.core.Sort;
+import io.jmix.core.security.CurrentAuthentication;
+import io.jmix.ui.component.Button;
 import io.jmix.ui.component.EntityComboBox;
+import io.jmix.ui.component.GroupTable;
 import io.jmix.ui.component.HasValue;
+import io.jmix.ui.component.data.TableItems;
 import io.jmix.ui.model.CollectionContainer;
 import io.jmix.ui.screen.*;
 import com.company.klavr.entity.Statistics;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @UiController("Statistics_Admin.browse")
 @UiDescriptor("statisticsAdmin-browse.xml")
 @LookupComponent("statisticsesTable")
 public class StatisticsAdminBrowse extends StandardLookup<Statistics> {
+    DateFormat formatter = new SimpleDateFormat("dd.MM.yyyy\nhh:mm");
+    @Autowired
+    private GroupTable<Statistics> statisticsesTable;
     @Autowired
     private CollectionContainer<UserProgress> statisticsesAdminDc;
     @Autowired
@@ -28,6 +39,48 @@ public class StatisticsAdminBrowse extends StandardLookup<Statistics> {
     private EntityComboBox<Exercise> exerciseComboBox;
     @Autowired
     private SerialChart adminSerialChart;
+    @Autowired
+    private CurrentAuthentication currentAuthentication;
+    @Autowired
+    private EntityComboBox<User> entityTableComboBox;
+    @Autowired
+    private CollectionContainer<Statistics> statisticsesDc;
+
+    @Subscribe("entityTableComboBox")
+    public void onEntityTableComboBoxValueChange(HasValue.ValueChangeEvent<User> event) {
+
+        List<Statistics> statistics = dataManager.load(Statistics.class).query(
+                "select e from Statistics_ e order by e.finishDate ").sort(Sort.by("finishDate")).list();
+        if (entityTableComboBox.getValue() != null) {
+            statistics = statistics.stream().filter(
+                    stat -> Objects.equals(stat.getStatistics_to_user().getId(),
+                            entityTableComboBox.getValue().getId())
+            ).collect(Collectors.toList());
+            statisticsesDc.setItems(statistics);
+        }
+        statisticsesDc.setItems(statistics);
+    }
+
+
+    @Subscribe("resetChartButton")
+    public void onResetChartButtonClick(Button.ClickEvent event) {
+        exerciseComboBox.setValue(null);
+        userComboBox.setValue(null);
+        Collection<UserProgress> userProgressList = new ArrayList<>();
+
+        //Просто данные.
+        List<Statistics> statisticsList = dataManager.load(Statistics.class).all().sort(Sort.by("finishDate")).list();
+        if (statisticsList.size() != 0) {
+            for (Statistics stat : statisticsList) {
+                UserProgress up = new UserProgress(stat.getStatistics_to_exercise().getName() + "\n"
+                        + formatter.format(stat.getFinishDate()), stat.getTimer());
+                userProgressList.add(up);
+            }
+        }
+
+        adminSerialChart.setCategoryField("exercise");
+        statisticsesAdminDc.setItems(userProgressList);
+    }
 
     @Subscribe("userComboBox")
     public void onUserComboBoxValueChange(HasValue.ValueChangeEvent<User> event) {
@@ -39,7 +92,7 @@ public class StatisticsAdminBrowse extends StandardLookup<Statistics> {
 
         //Считаем среднее за упражнения у пользователя.
         List<User> userList = dataManager.load(User.class).all().list();
-        List<Statistics> statisticsList = dataManager.load(Statistics.class).all().list();
+        List<Statistics> statisticsList = dataManager.load(Statistics.class).all().sort(Sort.by("finishDate")).list();
         if (statisticsList.size() != 0 && userList.size() != 0) {
             int result = 0;
             int counter = 0;
@@ -71,6 +124,15 @@ public class StatisticsAdminBrowse extends StandardLookup<Statistics> {
 
     @Subscribe("exerciseComboBox")
     public void onExerciseComboBoxValueChange(HasValue.ValueChangeEvent<Exercise> event) {
+
+        exerciseComboBox.getValue();
+        /*
+        adminSerialChart.setCategoryField("finishDate");
+        Collection<Statistics> statisticsCollection = dataManager.load(Statistics.class).query(
+                "select e from Statistics_ e where e.statistics_to_exercise = ?1 order by e.finishDate ", exerciseComboBox.getValue()).sort(Sort.by("finishDate")).list();
+        statisticsesAdminDc.setItems(statisticsesAdminDc);
+        */
+
         if (exerciseComboBox.getValue() == null) return;
         userComboBox.setValue(null);
         Collection<UserProgress> userProgressList = new ArrayList<>();
@@ -79,7 +141,7 @@ public class StatisticsAdminBrowse extends StandardLookup<Statistics> {
 
         //Считаем среднее за пользователя у упражнения.
         List<Exercise> exercisesList = dataManager.load(Exercise.class).all().list();
-        List<Statistics> statisticsList = dataManager.load(Statistics.class).all().list();
+        List<Statistics> statisticsList = dataManager.load(Statistics.class).all().sort(Sort.by("finishDate")).list();
         if (statisticsList.size() != 0 && exercisesList.size() != 0) {
             int result = 0;
             int counter = 0;

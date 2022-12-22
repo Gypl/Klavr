@@ -16,6 +16,22 @@
                 </query>
             </loader>
         </collection>
+        <collection id="statisticsesUserDc" class="com.company.klavr.entity.Statistics">
+            <fetchPlan extends="_base"/>
+            <loader id="statisticsesAdminDl">
+                <query>
+                    <![CDATA[select e from Statistics_ e order by e.finishDate]]>
+                </query>
+            </loader>
+        </collection>
+        <collection id="exercisesDc" class="com.company.klavr.entity.Exercise">
+            <fetchPlan extends="_base"/>
+            <loader id="exercisesDl">
+                <query>
+                    <![CDATA[select e from Exercise e]]>
+                </query>
+            </loader>
+        </collection>
     </data>
     <facets>
         <dataLoadCoordinator auto="true"/>
@@ -35,11 +51,34 @@
                 width="800"/>
     <layout expand="statisticsesTable" spacing="true">
         <filter id="filter"
-                dataLoader="statisticsesDl">
+                dataLoader="statisticsesDl" visible="false">
             <properties include=".*"/>
         </filter>
-        <entityComboBox/>
-        <chart:serialChart/>
+        <entityComboBox id="exerciseComboBox" optionsContainer="exercisesDc"
+                        description="msg://exerciseComboBox1.description"/>
+        <chart:serialChart dataContainer="statisticsesUserDc"
+                           categoryField="finishDate" id="adminSerialChart" angle="312" width="100%"
+                           autoMarginOffset="20"
+                           mouseWheelZoomEnabled="true"
+                           theme="LIGHT">
+            <chart:graphs>
+                <chart:graph id="g1"
+                             bullet="ROUND"
+                             bulletBorderAlpha="1"
+                             bulletColor="WHITE"
+                             bulletSize="5"
+                             hideBulletsCount="50"
+                             lineThickness="2"
+                             title="Red line"
+                             useLineColorForBulletBorder="true"
+                             valueField="timer"
+                             balloonText="&lt;span style='font-size:18px;'&gt;[[value]]&lt;/span&gt;">
+                    <chart:balloon adjustBorderColor="false"
+                                   color="WHITE"
+                                   drop="true"/>
+                </chart:graph>
+            </chart:graphs>
+        </chart:serialChart>
         <groupTable id="statisticsesTable"
                     width="100%"
                     dataContainer="statisticsesDc">

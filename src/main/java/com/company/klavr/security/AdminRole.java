@@ -29,8 +29,8 @@ public interface AdminRole extends UiMinimalRole {
     @EntityPolicy(entityClass = User.class, actions = EntityPolicyAction.ALL)
     void user();
 
-    @MenuPolicy(menuIds = {"User.browse", "Difficulty.browse", "Exercise.browse", "Statistics_User.browse", "Statistics_Admin.browse", "ExerciseUser.browse"})
-    @ScreenPolicy(screenIds = {"User.browse", "Difficulty.browse", "Exercise.browse", "Statistics_User.browse", "Statistics_Admin.browse", "ExerciseUser.browse", "ExerciseScreen", "Difficulty.edit", "Exercise.edit", "Zone_.browse", "sec_UserSubstitutionsScreen", "sec_UserSubstitutionsFragment", "sec_UserSubstitutionEntity.edit", "sec_RowLevelRoleModel.lookup", "sec_RowLevelRoleModel.browse", "sec_RowLevelRoleModel.edit", "sec_RowLevelPolicyModel.edit", "sec_RoleFilterFragment", "sec_RoleAssignmentScreen", "sec_ResourceRoleModel.lookup", "sec_ResourceRoleModel.edit", "sec_ResourceRoleModel.browse", "sec_SpecificResourcePolicyModel.edit", "sec_ScreenResourcePolicyModel.edit", "sec_ScreenResourcePolicyModel.create", "sec_ResourcePolicyModel.edit", "sec_MenuResourcePolicyModel.create", "sec_EntityResourcePolicyModel.edit", "sec_EntityAttributeResourcePolicyModel.create", "sec_MenuResourcePolicyModel.edit", "sec_GraphQLResourcePolicyModel.edit", "sec_EntityResourcePolicyModel.create", "sec_EntityAttributeResourcePolicyModel.edit"})
+    @MenuPolicy(menuIds = {"User.browse", "Difficulty.browse", "Exercise.browse", "Statistics_User.browse", "Statistics_Admin.browse", "ExerciseUser.browse", "InfoScreen"})
+    @ScreenPolicy(screenIds = {"User.browse", "Difficulty.browse", "Exercise.browse", "Statistics_User.browse", "Statistics_Admin.browse", "ExerciseUser.browse", "ExerciseScreen", "Difficulty.edit", "Exercise.edit", "Zone_.browse", "sec_UserSubstitutionsScreen", "sec_UserSubstitutionsFragment", "sec_UserSubstitutionEntity.edit", "sec_RowLevelRoleModel.lookup", "sec_RowLevelRoleModel.browse", "sec_RowLevelRoleModel.edit", "sec_RowLevelPolicyModel.edit", "sec_RoleFilterFragment", "sec_RoleAssignmentScreen", "sec_ResourceRoleModel.lookup", "sec_ResourceRoleModel.edit", "sec_ResourceRoleModel.browse", "sec_SpecificResourcePolicyModel.edit", "sec_ScreenResourcePolicyModel.edit", "sec_ScreenResourcePolicyModel.create", "sec_ResourcePolicyModel.edit", "sec_MenuResourcePolicyModel.create", "sec_EntityResourcePolicyModel.edit", "sec_EntityAttributeResourcePolicyModel.create", "sec_MenuResourcePolicyModel.edit", "sec_GraphQLResourcePolicyModel.edit", "sec_EntityResourcePolicyModel.create", "sec_EntityAttributeResourcePolicyModel.edit", "InfoScreen"})
     void screens();
 
     @EntityAttributePolicy(entityClass = Zone.class, attributes = "*", action = EntityAttributePolicyAction.MODIFY)
@@ -39,4 +39,8 @@ public interface AdminRole extends UiMinimalRole {
 
     @SpecificPolicy(resources = "ui.filter.modifyGlobalConfiguration")
     void specific();
+
+    @EntityAttributePolicy(entityClass = UserProgress.class, attributes = "*", action = EntityAttributePolicyAction.MODIFY)
+    @EntityPolicy(entityClass = UserProgress.class, actions = EntityPolicyAction.ALL)
+    void userProgress();
 }

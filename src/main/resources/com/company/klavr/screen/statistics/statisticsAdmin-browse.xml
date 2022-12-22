@@ -67,7 +67,7 @@
                 width="800"/>
     <layout expand="statisticsesTable" spacing="true">
         <filter id="filter"
-                dataLoader="statisticsesDl">
+                dataLoader="statisticsesDl" visible="false">
             <properties include=".*"/>
         </filter>
         <hbox spacing="true">
@@ -77,9 +77,13 @@
             <entityComboBox id="userComboBox"
                             description="msg://userComboBox.description"
                             optionsContainer="usersDc"/>
+            <button id="resetChartButton" caption="msg://resetChartButton.caption"/>
         </hbox>
         <chart:serialChart dataContainer="statisticsesAdminDc"
-                           categoryField="finishDate" id="adminSerialChart">
+                           categoryField="finishDate" id="adminSerialChart" angle="312" width="100%"
+                           autoMarginOffset="20"
+                           mouseWheelZoomEnabled="true"
+                           theme="LIGHT">
             <chart:graphs>
                 <chart:graph id="g1"
                              bullet="ROUND"
@@ -98,6 +102,9 @@
                 </chart:graph>
             </chart:graphs>
         </chart:serialChart>
+        <entityComboBox id="entityTableComboBox"
+                        description="msg://userComboBox.description"
+                        optionsContainer="usersDc"/>
         <groupTable id="statisticsesTable"
                     width="100%"
                     dataContainer="statisticsesDc">
