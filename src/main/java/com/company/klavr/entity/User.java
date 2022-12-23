@@ -6,6 +6,7 @@ import io.jmix.core.entity.annotation.SystemLevel;
 import io.jmix.core.metamodel.annotation.InstanceName;
 import io.jmix.core.metamodel.annotation.JmixEntity;
 import io.jmix.security.authentication.JmixUserDetails;
+import org.checkerframework.common.aliasing.qual.Unique;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
@@ -26,6 +27,7 @@ public class User implements JmixUserDetails {
     private UUID id;
 
     @InstanceName
+    @Unique
     @Column(name = "USERNAME", nullable = false)
     protected String username;
 

@@ -123,5 +123,26 @@
         </insert>
 
     </changeSet>
+    <changeSet id="9" author="Klavr" context="!cuba">
 
+        <insert tableName="SEC_ROLE_ASSIGNMENT" dbms="postgresql, mssql, hsqldb">
+            <column name="ID" value="1a314213-2b7a-4c42-8654-a9027ee14083"/>
+            <column name="VERSION" value="1"/>
+            <column name="USERNAME" value="Лариса"/>
+            <column name="ROLE_CODE" value="user"/>
+            <column name="ROLE_TYPE" value="resource"/>
+        </insert>
+
+    </changeSet>
+    <changeSet id="10" author="Klavr" context="!cuba">
+
+    <insert tableName="SEC_ROLE_ASSIGNMENT" dbms="postgresql, mssql, hsqldb">
+        <column name="ID" value="1a114213-2b7a-4c42-8654-a9027ee14083"/>
+        <column name="VERSION" value="1"/>
+        <column name="USERNAME" value="ibrogim"/>
+        <column name="ROLE_CODE" value="user"/>
+        <column name="ROLE_TYPE" value="resource"/>
+    </insert>
+
+    </changeSet>
 </databaseChangeLog>

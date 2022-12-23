@@ -34,7 +34,7 @@
                 width="800"/>
     <layout expand="exercisesTable" spacing="true">
         <filter id="filter"
-                dataLoader="exercisesDl">
+                dataLoader="exercisesDl" visible="false">
             <properties include=".*"/>
         </filter>
         <groupTable id="exercisesTable"

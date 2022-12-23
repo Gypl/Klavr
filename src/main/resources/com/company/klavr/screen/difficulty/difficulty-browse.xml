@@ -19,6 +19,7 @@
     <facets>
         <dataLoadCoordinator auto="true"/>
         <screenSettings id="settingsFacet" auto="true"/>
+        <notification id="notification"/>
     </facets>
     <actions>
         <action id="lookupSelectAction"

@@ -5,6 +5,7 @@ import io.jmix.core.entity.annotation.ConversionType;
 import io.jmix.core.entity.annotation.JmixGeneratedValue;
 import io.jmix.core.metamodel.annotation.InstanceName;
 import io.jmix.core.metamodel.annotation.JmixEntity;
+import org.checkerframework.common.aliasing.qual.Unique;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -25,6 +26,7 @@ public class Exercise {
     @CaseConversion
     @Column(name = "NAME", nullable = false, length = 30)
     @NotNull
+    @Unique
     private String name;
 
     @CaseConversion(type = ConversionType.LOWER)
