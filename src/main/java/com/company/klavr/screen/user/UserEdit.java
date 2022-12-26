@@ -7,6 +7,7 @@ import io.jmix.core.DataManager;
 import io.jmix.core.EntityStates;
 import io.jmix.core.security.event.SingleUserPasswordChangeEvent;
 import io.jmix.security.role.assignment.RoleAssignmentRoleType;
+import io.jmix.securitydata.entity.RoleAssignmentEntity;
 import io.jmix.ui.Notifications;
 import io.jmix.ui.component.PasswordField;
 import io.jmix.ui.component.TextField;
@@ -49,6 +50,16 @@ public class UserEdit extends StandardEditor<User> {
     private MessageBundle messageBundle;
 
     private boolean isNewEntity;
+
+    @Subscribe
+    public void onAfterCommitChanges(AfterCommitChangesEvent event) {
+        RoleAssignmentEntity role = dataManager.create(RoleAssignmentEntity.class);
+        role.setRoleCode("user");
+        role.setRoleType("resource");
+        role.setUsername(Objects.requireNonNull(usernameField.getValue()));
+        role.setVersion(1);
+        dataManager.save(role);
+    }
 
     @Subscribe
     public void onInitEntity(InitEntityEvent<User> event) {

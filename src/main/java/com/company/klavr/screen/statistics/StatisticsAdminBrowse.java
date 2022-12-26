@@ -46,6 +46,25 @@ public class StatisticsAdminBrowse extends StandardLookup<Statistics> {
     @Autowired
     private CollectionContainer<Statistics> statisticsesDc;
 
+    @Subscribe
+    public void onAfterShow(AfterShowEvent event) {
+        //Сразу показываем красиво
+        exerciseComboBox.setValue(null);
+        userComboBox.setValue(null);
+        Collection<UserProgress> userProgressList = new ArrayList<>();
+        //Просто данные.
+        List<Statistics> statisticsList = dataManager.load(Statistics.class).all().sort(Sort.by("finishDate")).list();
+        if (statisticsList.size() != 0) {
+            for (Statistics stat : statisticsList) {
+                UserProgress up = new UserProgress(stat.getStatistics_to_exercise().getName() + "\n"
+                        + formatter.format(stat.getFinishDate()), stat.getTimer());
+                userProgressList.add(up);
+            }
+        }
+        adminSerialChart.setCategoryField("exercise");
+        statisticsesAdminDc.setItems(userProgressList);
+    }
+
     @Subscribe("entityTableComboBox")
     public void onEntityTableComboBoxValueChange(HasValue.ValueChangeEvent<User> event) {
 
@@ -67,7 +86,6 @@ public class StatisticsAdminBrowse extends StandardLookup<Statistics> {
         exerciseComboBox.setValue(null);
         userComboBox.setValue(null);
         Collection<UserProgress> userProgressList = new ArrayList<>();
-
         //Просто данные.
         List<Statistics> statisticsList = dataManager.load(Statistics.class).all().sort(Sort.by("finishDate")).list();
         if (statisticsList.size() != 0) {
@@ -77,7 +95,6 @@ public class StatisticsAdminBrowse extends StandardLookup<Statistics> {
                 userProgressList.add(up);
             }
         }
-
         adminSerialChart.setCategoryField("exercise");
         statisticsesAdminDc.setItems(userProgressList);
     }
@@ -89,7 +106,6 @@ public class StatisticsAdminBrowse extends StandardLookup<Statistics> {
         Collection<UserProgress> userProgressList = new ArrayList<>();
         Map<UUID, Integer> userStates = new HashMap<>();
         Map<UUID, Integer> userCounter = new HashMap<>();
-
         //Считаем среднее за упражнения у пользователя.
         List<User> userList = dataManager.load(User.class).all().list();
         List<Statistics> statisticsList = dataManager.load(Statistics.class).all().sort(Sort.by("finishDate")).list();
@@ -124,15 +140,11 @@ public class StatisticsAdminBrowse extends StandardLookup<Statistics> {
 
     @Subscribe("exerciseComboBox")
     public void onExerciseComboBoxValueChange(HasValue.ValueChangeEvent<Exercise> event) {
-
-        exerciseComboBox.getValue();
-
         if (exerciseComboBox.getValue() == null) return;
         userComboBox.setValue(null);
         Collection<UserProgress> userProgressList = new ArrayList<>();
         Map<UUID, Integer> userStates = new HashMap<>();
         Map<UUID, Integer> userCounter = new HashMap<>();
-
         //Считаем среднее за пользователя у упражнения.
         List<Exercise> exercisesList = dataManager.load(Exercise.class).all().list();
         List<Statistics> statisticsList = dataManager.load(Statistics.class).all().sort(Sort.by("finishDate")).list();
@@ -160,8 +172,6 @@ public class StatisticsAdminBrowse extends StandardLookup<Statistics> {
         }
         //Меняем параметры графика
         adminSerialChart.setCategoryField("exercise");
-        exerciseComboBox.getValue();
-
         statisticsesAdminDc.setItems(userProgressList);
     }
 

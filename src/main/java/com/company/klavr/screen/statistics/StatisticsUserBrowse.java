@@ -37,6 +37,7 @@ public class StatisticsUserBrowse extends StandardLookup<Statistics> {
     @Autowired
     private CollectionContainer<Statistics> statisticsesDc;
 
+
     @Subscribe("exerciseComboBox")
     public void onExerciseComboBoxValueChange(HasValue.ValueChangeEvent event) {
 
@@ -105,6 +106,23 @@ public class StatisticsUserBrowse extends StandardLookup<Statistics> {
         ).collect(Collectors.toList());
 
         statisticsesDc.setItems(statistics);
+    }
+    @Subscribe
+    public void onAfterShow1(AfterShowEvent event) {
+        Collection<UserProgress> userProgressList = new ArrayList<>();
+        //Просто данные.
+        List<Statistics> statisticsList = dataManager.load(Statistics.class).all().sort(Sort.by("finishDate")).list();
+        if (statisticsList.size() != 0) {
+            for (Statistics stat : statisticsList) {
+                if (Objects.equals(stat.getStatistics_to_user().getUsername(), currentAuthentication.getUser().getUsername())) {
+                    UserProgress up = new UserProgress(stat.getStatistics_to_exercise().getName() + "\n"
+                            + formatter.format(stat.getFinishDate()), stat.getTimer());
+                    userProgressList.add(up);
+                }
+            }
+        }
+        adminSerialChart.setCategoryField("exercise");
+        statisticsesUserDc.setItems(userProgressList);
     }
 
 }
