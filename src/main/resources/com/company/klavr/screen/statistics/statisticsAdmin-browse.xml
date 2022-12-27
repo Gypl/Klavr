@@ -73,10 +73,12 @@
         <hbox spacing="true">
             <entityComboBox id="exerciseComboBox"
                             description="msg://exerciseComboBox.description"
-                            optionsContainer="exercisesDc"/>
+                            optionsContainer="exercisesDc" nullName="msg:///exerciseComboBox.nullName"
+                            caption="msg:///exerciseComboBox.caption"/>
             <entityComboBox id="userComboBox"
                             description="msg://userComboBox.description"
-                            optionsContainer="usersDc"/>
+                            optionsContainer="usersDc"
+                            nullName="msg://userComboBox.nullName" caption="msg://userComboBox.caption"/>
             <button id="resetChartButton" caption="msg://resetChartButton.caption"/>
         </hbox>
         <chart:serialChart dataContainer="statisticsesAdminDc"
@@ -104,7 +106,8 @@
         </chart:serialChart>
         <entityComboBox id="entityTableComboBox"
                         description="msg://userComboBox.description"
-                        optionsContainer="usersDc"/>
+                        optionsContainer="usersDc"
+                        nullName="msg://entityTableComboBox.nullName" caption="msg://entityTableComboBox.caption"/>
         <groupTable id="statisticsesTable"
                     width="100%"
                     dataContainer="statisticsesDc">

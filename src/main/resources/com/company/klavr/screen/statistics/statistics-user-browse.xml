@@ -55,7 +55,8 @@
             <properties include=".*"/>
         </filter>
         <entityComboBox id="exerciseComboBox" optionsContainer="exercisesDc"
-                        description="msg://exerciseComboBox1.description"/>
+                        description="msg://exerciseComboBox1.description"
+                        nullName="msg://exerciseComboBox1.nullName" caption="msg://exerciseComboBox1.caption"/>
         <chart:serialChart dataContainer="statisticsesUserDc"
                            categoryField="finishDate" id="adminSerialChart" angle="312" width="100%"
                            autoMarginOffset="20"

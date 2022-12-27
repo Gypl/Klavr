@@ -55,7 +55,7 @@
                         <button id="refButton"
                                 align="MIDDLE_CENTER"
                                 action="submit"
-                        />
+                                visible="false"/>
                     </hbox>
                 </vbox>
             </vbox>
