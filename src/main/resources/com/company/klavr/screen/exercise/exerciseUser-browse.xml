@@ -15,6 +15,14 @@
                 </query>
             </loader>
         </collection>
+        <collection id="difficultiesDc" class="com.company.klavr.entity.Difficulty">
+            <fetchPlan extends="_base"/>
+            <loader id="difficultiesDl">
+                <query>
+                    <![CDATA[select e from Difficulty e]]>
+                </query>
+            </loader>
+        </collection>
     </data>
     <facets>
         <dataLoadCoordinator auto="true"/>
@@ -37,6 +45,9 @@
                 dataLoader="exercisesDl" visible="false">
             <properties include=".*"/>
         </filter>
+        <entityComboBox id="difficultyComboBox" nullName="msg://entityComboBox.nullName"
+                        optionsContainer="difficultiesDc"
+                        />
         <groupTable id="exercisesTable"
                     width="100%"
                     dataContainer="exercisesDc">
@@ -52,7 +63,7 @@
             <simplePagination/>
             <buttonsPanel id="buttonsPanel"
                           alwaysVisible="true">
-                <button id="excludeBtn" action="exercisesTable.exclude"/>
+                <button id="excludeBtn" action="exercisesTable.exclude" visible="false"/>
             </buttonsPanel>
         </groupTable>
         <hbox id="lookupActions" spacing="true" visible="false">

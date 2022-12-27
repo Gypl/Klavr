@@ -10,9 +10,7 @@ import io.jmix.ui.screen.*;
 import com.company.klavr.entity.Exercise;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.List;
-import java.util.Scanner;
-import java.util.Random;
+import java.util.*;
 
 @UiController("Exercise.edit")
 @UiDescriptor("exercise-edit.xml")
@@ -20,6 +18,9 @@ import java.util.Random;
 public class ExerciseEdit extends StandardEditor<Exercise> {
     @Autowired
     private DataManager dataManager;
+    @Autowired
+    private TextField<String> nameField;
+
     @Subscribe
     public void onBeforeCommitChanges(BeforeCommitChangesEvent event) {
         if(exercise_to_difficultyComboBox.getValue() == null) {
@@ -43,6 +44,19 @@ public class ExerciseEdit extends StandardEditor<Exercise> {
                         .withCaption(messages.getMessage("com.company.klavr.incorrectLength")).show();
                 event.preventCommit();
             }
+        }
+
+        List<Exercise> exercises = dataManager.load(Exercise.class).all().list();
+        List<String> names = new ArrayList<>();
+        List<UUID> ids = new ArrayList<>();
+        for (Exercise exercise : exercises) {
+            names.add(exercise.getName());
+            ids.add(exercise.getId());
+        }
+        if (!ids.contains(getEditedEntity().getId()) && names.contains(nameField.getValue())){
+            notifications.create(Notifications.NotificationType.HUMANIZED)
+                    .withCaption("Упражнение с данным именем уже существует").show();
+            event.preventCommit();
         }
     }
     @Autowired
