@@ -17,13 +17,13 @@ public class InfoScreen extends Screen {
 
     @Subscribe("creatorsButton")
     public void onCreatorsButtonClick(Button.ClickEvent event) {
-        messageDialog.setCaption("Создатели приложения");
+        messageDialog.setCaption("О разработчиках");
         messageDialog.setMessage(getCreators());
         messageDialog.show();
     }
 
     private String getCreators() {
-        return String.format("Студенты замечательной группы 6402: \n") +
+        return String.format("Данную систему разработали студенты группы 6402-090301D: \n") +
                 String.format("Лавлов А.Ю.\n") +
                 String.format("Денисов М.Н.\n") +
                 String.format("Косарев Д.С.\n");

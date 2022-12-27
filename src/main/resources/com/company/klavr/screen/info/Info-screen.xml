@@ -7,15 +7,11 @@
     <layout>
         <vbox spacing="true" align="MIDDLE_CENTER">
             <htmlBox align="TOP_RIGHT">
-                <templateContents><![CDATA[<div style="
- display: table;
-  margin: 0 auto;
-">
-    <h1>Клавиатурный тренажёр</h1>
-    <p>Для развития навыка печати, печати на время, слепой печати.</p>
-</div>]]></templateContents>
             </htmlBox>
+
             <button id="creatorsButton" caption="msg://creatorsButton.caption" align="TOP_CENTER"/>
         </vbox>
+        <!--TODO: gavno-->
+        <link caption="Справка ебана" url="src\main\resources\com\company\klavr\html\help.html"/>
     </layout>
 </window>
