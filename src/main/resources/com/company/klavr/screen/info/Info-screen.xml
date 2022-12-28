@@ -5,13 +5,75 @@
         <messageDialog id="messageDialog" modal="true" closeOnClickOutside="true"/>
     </facets>
     <layout>
-        <vbox spacing="true" align="MIDDLE_CENTER">
+        <vbox spacing="true" align="MIDDLE_CENTER" width="100%" css="margin: 2rem .5rem 5rem .5rem">
             <htmlBox align="TOP_RIGHT">
+                <templateContents><![CDATA[<h2 style="text-align: center;"><strong>Клавиатурный тренажер</strong></h2>
+<h3 id="h3_1"><strong>Введение</strong></h3>
+<p>Клавиатурный тренажер будет использоваться для обучения набору на компьютерной клавиатуре. Он позволяет создавать и выполнять специальные упражнения по набору текста, а также отслеживать статистику их выполнения. Программа использует базу данных PostgreSQL(требует предустановления сервера PostgreSQL и базы данных). Для работа программы требуется доступ в интернет.</p>
+<h3 id="h3_2"><strong>Авторизация, запуск программы</strong></h3>
+<p>Данная программная система состоит из двух частей: для облуживания пользователей и работы администратора. При запуске программной системы появляется окно авторизации, представленное на рисунке. В поля &laquo;Логин&raquo; и &laquo;Пароль&raquo; необходимо ввести данные зарегистрированного пользователя и нажать кнопку &laquo;Войти&raquo;. Так же галочка &laquo;запомнить меня&raquo; позволяет пропустить этап авторизации при следующем запуске системы, если не был произведен выход.</p>
+<p>Если данные введены верно, то система определяет права пользователя и происходит вход в систему.</p>]]></templateContents>
+            </htmlBox>
+            <image scaleMode="SCALE_DOWN" align="TOP_CENTER">
+                <resource>
+                    <classpath path="com/company/klavr/html/image/вход.png"/>
+                </resource>
+            </image>
+            <htmlBox align="TOP_RIGHT">
+                <templateContents><![CDATA[
+    <h3 id="h3_3"><strong>Главное меню</strong></h3>
+]]></templateContents>
+            </htmlBox>
+            <image scaleMode="SCALE_DOWN" align="TOP_CENTER">
+                <resource>
+                    <classpath path="com/company/klavr/html/image/меню.png"/>
+                </resource>
+            </image>
+
+            <htmlBox align="TOP_RIGHT">
+                <templateContents><![CDATA[
+    <p>В главном меню есть возможность перейти к списку упражнений или просмотреть статистику.</p>
+   <h3 id="h3_4"><strong>Список упражнений</strong></h3>
+]]></templateContents>
+            </htmlBox>
+            <image scaleMode="SCALE_DOWN" align="TOP_CENTER">
+                <resource>
+                    <classpath path="com/company/klavr/html/image/упр.png"/>
+                </resource>
+            </image>
+
+            <htmlBox align="TOP_RIGHT">
+                <templateContents><![CDATA[
+		<p>После нажатия на упрженение откроется окно с выполнением упражнения.</p>
+]]></templateContents>
+            </htmlBox>
+            <image scaleMode="SCALE_DOWN" align="TOP_CENTER">
+                <resource>
+                    <classpath path="com/company/klavr/html/image/вып.png"/>
+                </resource>
+            </image>
+
+            <htmlBox align="TOP_RIGHT">
+                <templateContents><![CDATA[
+		<h3 id="h3_5"><strong>Просмотр статистики</strong></h3>
+		<p>После выбора в меню вкладки статистика открывается окно с выбором статистики по упражненям, по умолчанию отображается статистика по всем упражнениям.</p>
+]]></templateContents>
+            </htmlBox>
+            <image scaleMode="SCALE_DOWN" align="TOP_CENTER">
+                <resource>
+                    <classpath path="com/company/klavr/html/image/стат.png"/>
+                </resource>
+            </image>
+
+            <htmlBox align="TOP_RIGHT">
+                <templateContents><![CDATA[
+                <h3 id="h3_6"><strong>Выход из системы</strong></h3>
+		<p>После выхода из системы открывается форма авторизации описанная выше.</p>
+]]></templateContents>
             </htmlBox>
 
             <button id="creatorsButton" caption="msg://creatorsButton.caption" align="TOP_CENTER"/>
         </vbox>
-        <!--TODO: gavno-->
-        <link caption="Справка ебана" url="src\main\resources\com\company\klavr\html\help.html"/>
+
     </layout>
 </window>

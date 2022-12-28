@@ -34,6 +34,7 @@ dependencies {
     implementation 'io.jmix.datatools:jmix-datatools-ui-starter'
 
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'io.qtjambi:qtjambi-webengine:5.15.11'
 
 
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
