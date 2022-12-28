@@ -7,7 +7,7 @@
         <collection id="statisticsesDc"
                     class="com.company.klavr.entity.Statistics">
             <fetchPlan extends="_base">
-                <property name="statistics_to_exercise" fetchPlan="_base"/>
+
                 <property name="statistics_to_user" fetchPlan="_base"/>
             </fetchPlan>
             <loader id="statisticsesDl">
@@ -40,13 +40,6 @@
                 </query>
             </loader>
         </collection>
-        <keyValueCollection id="avgUser">
-            <loader>
-                <query>
-                    <![CDATA[SELECT avg (e.timer) from Statistics_ e]]>
-                </query>
-            </loader>
-        </keyValueCollection>
 
     </data>
     <facets>
@@ -73,12 +66,12 @@
         <hbox spacing="true">
             <entityComboBox id="exerciseComboBox"
                             description="msg://exerciseComboBox.description"
-                            optionsContainer="exercisesDc" nullName="msg:///exerciseComboBox.nullName"
+                            optionsContainer="exercisesDc"
                             caption="msg:///exerciseComboBox.caption"/>
             <entityComboBox id="userComboBox"
                             description="msg://userComboBox.description"
                             optionsContainer="usersDc"
-                            nullName="msg://userComboBox.nullName" caption="msg://userComboBox.caption"/>
+                            caption="msg://userComboBox.caption"/>
             <button id="resetChartButton" caption="msg://resetChartButton.caption"/>
         </hbox>
         <chart:serialChart dataContainer="statisticsesAdminDc"

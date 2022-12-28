@@ -11,7 +11,7 @@ import java.util.UUID;
 
 @JmixEntity
 @Table(name = "STATISTICS_", indexes = {
-        @Index(name = "IDX_STATISTICS_STATISTICSTOEXE", columnList = "STATISTICS_TO_EXERCISE_ID"),
+        @Index(name = "IDX_STATISTICS_STATISTICSTOEXE", columnList = "STATISTICS_TO_EXERCISE"),
         @Index(name = "IDX_STATISTICS_STATISTICSTOUSE", columnList = "STATISTICS_TO_USER_ID")
 })
 @Entity(name = "Statistics_")
@@ -27,10 +27,9 @@ public class Statistics {
     @NotNull
     private Date finishDate;
 
-    @JoinColumn(name = "STATISTICS_TO_EXERCISE_ID", nullable = false)
+    @Column(name = "STATISTICS_TO_EXERCISE", nullable = false, length = 60)
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    private Exercise statistics_to_exercise;
+    private String statistics_to_exercise;
 
     @JoinColumn(name = "STATISTICS_TO_USER_ID", nullable = false)
     @NotNull
@@ -57,16 +56,20 @@ public class Statistics {
     @NotNull
     private Integer speed;
 
+    public void setStatistics_to_exercise(String statistics_to_exercise) {
+        this.statistics_to_exercise = statistics_to_exercise;
+    }
+
+    public String getStatistics_to_exercise() {
+        return statistics_to_exercise;
+    }
+
     public void setMaxMistakes(Integer maxMistakes) {
         this.maxMistakes = maxMistakes;
     }
 
     public Integer getMaxMistakes() {
         return maxMistakes;
-    }
-
-    public void setStatistics_to_exercise(Exercise statistics_to_exercise) {
-        this.statistics_to_exercise = statistics_to_exercise;
     }
 
     public void setStatistics_to_user(User statistics_to_user) {
@@ -95,10 +98,6 @@ public class Statistics {
 
     public User getStatistics_to_user() {
         return statistics_to_user;
-    }
-
-    public Exercise getStatistics_to_exercise() {
-        return statistics_to_exercise;
     }
 
     public Integer getSpeed() {

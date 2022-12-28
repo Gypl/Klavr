@@ -7,7 +7,7 @@
         <collection id="statisticsesDc"
                     class="com.company.klavr.entity.Statistics">
             <fetchPlan extends="_base">
-                <property name="statistics_to_exercise" fetchPlan="_base"/>
+
                 <property name="statistics_to_user" fetchPlan="_base"/>
             </fetchPlan>
             <loader id="statisticsesDl">

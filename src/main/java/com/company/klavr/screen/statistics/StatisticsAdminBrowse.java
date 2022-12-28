@@ -6,6 +6,7 @@ import com.company.klavr.entity.UserProgress;
 import io.jmix.charts.component.SerialChart;
 import io.jmix.core.DataManager;
 import io.jmix.core.Sort;
+import io.jmix.core.querycondition.PropertyCondition;
 import io.jmix.core.security.CurrentAuthentication;
 import io.jmix.ui.component.Button;
 import io.jmix.ui.component.EntityComboBox;
@@ -56,7 +57,7 @@ public class StatisticsAdminBrowse extends StandardLookup<Statistics> {
         List<Statistics> statisticsList = dataManager.load(Statistics.class).all().sort(Sort.by("finishDate")).list();
         if (statisticsList.size() != 0) {
             for (Statistics stat : statisticsList) {
-                UserProgress up = new UserProgress(stat.getStatistics_to_exercise().getName() + "\n"
+                UserProgress up = new UserProgress(stat.getStatistics_to_exercise() + "\n"
                         + formatter.format(stat.getFinishDate()), stat.getTimer());
                 userProgressList.add(up);
             }
@@ -90,7 +91,7 @@ public class StatisticsAdminBrowse extends StandardLookup<Statistics> {
         List<Statistics> statisticsList = dataManager.load(Statistics.class).all().sort(Sort.by("finishDate")).list();
         if (statisticsList.size() != 0) {
             for (Statistics stat : statisticsList) {
-                UserProgress up = new UserProgress(stat.getStatistics_to_exercise().getName() + "\n"
+                UserProgress up = new UserProgress(stat.getStatistics_to_exercise() + "\n"
                         + formatter.format(stat.getFinishDate()), stat.getTimer());
                 userProgressList.add(up);
             }
@@ -104,8 +105,8 @@ public class StatisticsAdminBrowse extends StandardLookup<Statistics> {
         if (userComboBox.getValue() == null) return;
         exerciseComboBox.setValue(null);
         Collection<UserProgress> userProgressList = new ArrayList<>();
-        Map<UUID, Integer> userStates = new HashMap<>();
-        Map<UUID, Integer> userCounter = new HashMap<>();
+        Map<String, Integer> userStates = new HashMap<>();
+        Map<String, Integer> userCounter = new HashMap<>();
         //Считаем среднее за упражнения у пользователя.
         List<User> userList = dataManager.load(User.class).all().list();
         List<Statistics> statisticsList = dataManager.load(Statistics.class).all().sort(Sort.by("finishDate")).list();
@@ -114,20 +115,20 @@ public class StatisticsAdminBrowse extends StandardLookup<Statistics> {
             int counter = 0;
             for (Statistics stat : statisticsList) {
                 if (Objects.equals(stat.getStatistics_to_user().getUsername(), userComboBox.getValue().getUsername())) {
-                    UUID currentID = stat.getStatistics_to_exercise().getId();
-                    if (userStates.containsKey(currentID)) {
-                        userStates.put(currentID, userStates.get(currentID) + stat.getTimer());
-                        userCounter.put(currentID, userCounter.get(currentID) + 1);
+                    String currentExName = stat.getStatistics_to_exercise();
+                    if (userStates.containsKey(currentExName)) {
+                        userStates.put(currentExName, userStates.get(currentExName) + stat.getTimer());
+                        userCounter.put(currentExName, userCounter.get(currentExName) + 1);
                     } else {
-                        userStates.put(currentID, stat.getTimer());
-                        userCounter.put(currentID, 1);
+                        userStates.put(currentExName, stat.getTimer());
+                        userCounter.put(currentExName, 1);
                     }
                 }
             }
 
-            for (UUID uuid : userStates.keySet()){
-                int temp = userStates.get(uuid) / userCounter.get(uuid);
-                UserProgress up = new UserProgress(dataManager.load(Exercise.class).id(uuid).one().getName(), temp);
+            for (String nameEx : userStates.keySet()){
+                int temp = userStates.get(nameEx) / userCounter.get(nameEx);
+                UserProgress up = new UserProgress(dataManager.load(Exercise.class).condition(PropertyCondition.equal("name",nameEx)).one().getName(), temp);
                 userProgressList.add(up);
             }
         }
@@ -152,7 +153,7 @@ public class StatisticsAdminBrowse extends StandardLookup<Statistics> {
             int result = 0;
             int counter = 0;
             for (Statistics stat : statisticsList) {
-                if (Objects.equals(stat.getStatistics_to_exercise().getName(), exerciseComboBox.getValue().getName())) {
+                if (Objects.equals(stat.getStatistics_to_exercise(), exerciseComboBox.getValue().getName())) {
                     UUID currentID = stat.getStatistics_to_user().getId();
                     if (userStates.containsKey(currentID)) {
                         userStates.put(currentID, userStates.get(currentID) + stat.getTimer());

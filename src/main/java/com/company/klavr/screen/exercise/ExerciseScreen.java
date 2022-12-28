@@ -134,7 +134,7 @@ public class ExerciseScreen extends Screen {
                 .one();
         currentUser = dataManager.load(User.class).condition(PropertyCondition.contains("ID", result)).one();*/
         statistics.setFinishDate(new Date());
-        statistics.setStatistics_to_exercise(exercise);
+        statistics.setStatistics_to_exercise(exercise.getName());
         statistics.setStatistics_to_user(currentUser);
         statistics.setExerciseLength(exercise.getLength());
         statistics.setMistakesCount(exerciseHandler.getCurrentMistakes());

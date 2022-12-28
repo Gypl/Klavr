@@ -49,7 +49,7 @@ public class StatisticsUserBrowse extends StandardLookup<Statistics> {
             if (statisticsList.size() != 0) {
                 for (Statistics stat : statisticsList) {
                     if (Objects.equals(stat.getStatistics_to_user().getUsername(), currentAuthentication.getUser().getUsername())) {
-                        UserProgress up = new UserProgress(stat.getStatistics_to_exercise().getName() + "\n"
+                        UserProgress up = new UserProgress(stat.getStatistics_to_exercise() + "\n"
                                 + formatter.format(stat.getFinishDate()), stat.getTimer());
                         userProgressList.add(up);
                     }
@@ -70,8 +70,8 @@ public class StatisticsUserBrowse extends StandardLookup<Statistics> {
             int counter = 0;
             for (Statistics stat : statisticsList) {
                 if (Objects.equals(stat.getStatistics_to_user().getUsername(),  currentAuthentication.getUser().getUsername())
-                        && Objects.equals(stat.getStatistics_to_exercise().getName(),  exerciseComboBox.getValue().getName())) {
-                    UserProgress up = new UserProgress(stat.getStatistics_to_exercise().getName() + "\n"
+                        && Objects.equals(stat.getStatistics_to_exercise(),  exerciseComboBox.getValue().getName())) {
+                    UserProgress up = new UserProgress(stat.getStatistics_to_exercise() + "\n"
                             + formatter.format(stat.getFinishDate()), stat.getTimer());
                     userProgressList.add(up);
                 }
@@ -115,7 +115,7 @@ public class StatisticsUserBrowse extends StandardLookup<Statistics> {
         if (statisticsList.size() != 0) {
             for (Statistics stat : statisticsList) {
                 if (Objects.equals(stat.getStatistics_to_user().getUsername(), currentAuthentication.getUser().getUsername())) {
-                    UserProgress up = new UserProgress(stat.getStatistics_to_exercise().getName() + "\n"
+                    UserProgress up = new UserProgress(stat.getStatistics_to_exercise() + "\n"
                             + formatter.format(stat.getFinishDate()), stat.getTimer());
                     userProgressList.add(up);
                 }

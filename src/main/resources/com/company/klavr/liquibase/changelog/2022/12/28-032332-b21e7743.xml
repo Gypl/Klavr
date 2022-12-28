@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.11.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1" author="Klavr">
+        <addColumn tableName="STATISTICS_">
+            <column name="STATISTICS_TO_EXERCISE" type="VARCHAR(60)"/>
+        </addColumn>
+
+        <addNotNullConstraint columnName="STATISTICS_TO_EXERCISE" defaultNullValue="''" tableName="STATISTICS_"/>
+    </changeSet>
+    <changeSet id="2" author="Klavr">
+        <dropColumn columnName="STATISTICS_TO_EXERCISE_ID" tableName="STATISTICS_"/>
+    </changeSet>
+    <changeSet id="3" author="Klavr">
+        <createIndex indexName="IDX_STATISTICS_STATISTICSTOEXE" tableName="STATISTICS_" unique="false">
+            <column name="STATISTICS_TO_EXERCISE"/>
+        </createIndex>
+    </changeSet>
+</databaseChangeLog>

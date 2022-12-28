@@ -47,7 +47,7 @@
         </filter>
         <entityComboBox id="difficultyComboBox" nullName="msg://entityComboBox.nullName"
                         optionsContainer="difficultiesDc"
-                        />
+                        caption="msg://difficultyComboBox.caption"/>
         <groupTable id="exercisesTable"
                     width="100%"
                     dataContainer="exercisesDc">
