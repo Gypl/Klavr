@@ -24,10 +24,15 @@ public class InfoScreen extends Screen {
     }
 
     private String getCreators() {
-        return String.format("Данную систему разработали студенты группы 6402-090301D: \n") +
+        return String.format("Лабораторный практикум по дисциплине: \n \"Технологии программирования\" \n Тема: " +
+                " \"Клавиатурный тренажёр с функциями администрирования\"\n\n") +
+                String.format("Данную систему разработали студенты группы 6402-090301D: \n") +
                 String.format("Лавлов А.Ю.\n") +
                 String.format("Денисов М.Н.\n") +
-                String.format("Косарев Д.С.\n");
+                String.format("Косарев Д.С.\n\n") +
+                String.format("Руководитель проекта: \n") +
+                String.format("Зеленко Лариса Сергеевна\n") +
+                String.format("\nСамарский университет 2022\n");
     }
     private void helpMe(){
 //        WebView webView = new WebView();
