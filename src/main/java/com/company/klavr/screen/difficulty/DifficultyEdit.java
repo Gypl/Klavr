@@ -21,7 +21,6 @@ import java.util.UUID;
 @UiController("Difficulty.edit")
 @UiDescriptor("difficulty-edit.xml")
 @EditedEntityContainer("difficultyDc")
-
 public class DifficultyEdit extends StandardEditor<Difficulty> {
     @Autowired
     private CheckBoxGroup<Zone> zoneTableCheckBoxGroup;
